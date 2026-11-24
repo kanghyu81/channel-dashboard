@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0f1220" />
+<meta name="description" content="유튜브 Tiny Wow · 스레드 @chalddop · 티스토리 달구랩 3채널 최신 현황 통합 대시보드 (2026-11-25 06:15 KST 기준)" />
+<title>채널 통합 대시보드 · 유튜브·스레드·티스토리</title>
+<style>
+  :root{
+    --bg:#eef1f7;
+    --card:#ffffff;
+    --ink:#151a26;
+    --ink-2:#4d5666;
+    --ink-3:#8a93a4;
+    --line:#e3e7ef;
+    --yt:#ff0033;
+    --th:#111318;
+    --ts:#ff5a00;
+    --up:#0a8f5b;
+    --down:#d23b3b;
+    --shadow:0 6px 18px rgba(20,28,45,.07);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    padding:0 0 calc(40px + env(safe-area-inset-bottom));
+    background:
+      radial-gradient(1200px 420px at 50% -160px, #dfe6f5 0%, rgba(223,230,245,0) 70%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;
+    font-size:15px;
+    word-break:keep-all;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 14px;}
+
+  /* ── header ── */
+  header.top{
+    padding:calc(18px + env(safe-area-inset-top)) 0 14px;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:11.5px;font-weight:700;letter-spacing:.08em;
+    color:#5b6b8c;background:#e2e8f6;border:1px solid #d5ddef;
+    padding:4px 9px;border-radius:999px;
+  }
+  h1{
+    margin:10px 0 4px;font-size:24px;line-height:1.25;letter-spacing:-.02em;
+  }
+  .sub{margin:0;color:var(--ink-2);font-size:13.5px;}
+  .stamp{
+    margin-top:10px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;
+    font-size:12px;color:var(--ink-3);
+  }
+  .stamp b{color:var(--ink-2);font-weight:700;}
+
+  /* ── summary strip ── */
+  .summary{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 16px;
+  }
+  .sum-card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:11px 10px 10px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .sum-card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent,var(--line));
+  }
+  .sum-card .name{font-size:11.5px;font-weight:700;color:var(--ink-2);display:flex;align-items:center;gap:4px;}
+  .sum-card .big{font-size:21px;font-weight:800;letter-spacing:-.02em;margin-top:2px;line-height:1.15;}
+  .sum-card .unit{font-size:11.5px;font-weight:600;color:var(--ink-3);margin-left:2px;}
+  .sum-card .meta{font-size:11px;color:var(--ink-3);margin-top:3px;}
+  .sum-card.yt{--accent:var(--yt);}
+  .sum-card.th{--accent:var(--th);}
+  .sum-card.ts{--accent:var(--ts);}
+
+  /* ── tabs ── */
+  .tabs{
+    position:sticky;top:0;z-index:20;
+    display:flex;gap:6px;padding:8px 0 8px;
+    background:linear-gradient(180deg,var(--bg) 72%,rgba(238,241,247,.55));
+    backdrop-filter:saturate(140%) blur(6px);
+    overflow-x:auto;scrollbar-width:none;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{
+    flex:0 0 auto;appearance:none;border:1px solid var(--line);background:#fff;
+    color:var(--ink-2);font:inherit;font-size:13.5px;font-weight:700;
+    padding:9px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;
+    box-shadow:0 2px 6px rgba(20,28,45,.05);transition:background .15s,color .15s,border-color .15s;
+  }
+  .tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .tab:focus-visible{outline:2px solid #5b6b8c;outline-offset:2px;}
+
+  /* ── panels ── */
+  .panel{padding-top:6px;}
+  html.js .panel{display:none;}
+  html.js .panel.active{display:block;animation:fade .18s ease-out;}
+  @keyframes fade{from{opacity:.35;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:16px 15px;margin:0 0 12px;box-shadow:var(--shadow);
+  }
+  .card h2{
+    margin:0 0 10px;font-size:16px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;
+  }
+  .card h2 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent,var(--ink));flex:0 0 auto;}
+  .card h3{margin:16px 0 8px;font-size:13.5px;color:var(--ink-2);letter-spacing:.01em;}
+  .card h3:first-of-type{margin-top:12px;}
+  .lead{color:var(--ink-2);font-size:13.5px;margin:0 0 4px;}
+  .fine{font-size:11.5px;color:var(--ink-3);margin:8px 0 0;line-height:1.55;}
+  .divider{height:1px;background:var(--line);margin:14px 0;}
+
+  /* channel header */
+  .chan{
+    display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;
+  }
+  .avatar{
+    width:44px;height:44px;border-radius:14px;flex:0 0 auto;
+    display:grid;place-items:center;font-weight:800;color:#fff;font-size:18px;
+    background:var(--accent,var(--ink));
+  }
+  .chan .who{flex:1 1 150px;min-width:0;}
+  .chan .who .t{font-size:17px;font-weight:800;letter-spacing:-.01em;}
+  .chan .who .h{font-size:12.5px;color:var(--ink-3);margin-top:1px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:5px;text-decoration:none;
+    font-size:12.5px;font-weight:700;color:var(--ink);
+    border:1px solid var(--line);background:#f7f9fd;border-radius:999px;padding:7px 12px;
+  }
+  .btn:active{transform:scale(.98);}
+  .btn.solid{background:var(--accent,var(--ink));border-color:var(--accent,var(--ink));color:#fff;}
+
+  /* stat grid */
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px;}
+  .stat{
+    border:1px solid var(--line);border-radius:12px;padding:10px 11px;background:#fafbfe;
+  }
+  .stat .k{font-size:11.5px;color:var(--ink-3);font-weight:600;}
+  .stat .v{font-size:18px;font-weight:800;letter-spacing:-.02em;margin-top:1px;}
+  .stat .v small{font-size:11.5px;font-weight:700;color:var(--ink-3);margin-left:2px;}
+  .stat .d{font-size:11px;color:var(--ink-3);margin-top:2px;}
+
+  .chip{
+    display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;
+    border-radius:999px;padding:2px 7px;line-height:1.5;
+  }
+  .chip.up{color:#08744a;background:#e2f6ec;}
+  .chip.flat{color:#6b7280;background:#f0f2f6;}
+  .chip.warn{color:#9a5b00;background:#fff2dd;}
+  .chip.yt{color:#c10028;background:#ffe8ed;}
+  .chip.th{color:#22252c;background:#eceef2;}
+  .chip.ts{color:#b83e00;background:#ffede2;}
+
+  /* lists */
+  ul.clean{list-style:none;margin:0;padding:0;}
+  ul.clean li{padding:9px 0;border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:0;padding-bottom:0;}
+  a.row{
+    display:flex;gap:10px;align-items:flex-start;text-decoration:none;color:inherit;
+  }
+  a.row:active{opacity:.7;}
+  .rank{
+    flex:0 0 22px;height:22px;border-radius:7px;display:grid;place-items:center;
+    font-size:11px;font-weight:800;background:#eef1f7;color:var(--ink-2);margin-top:1px;
+  }
+  .rank.top{background:var(--accent,#111);color:#fff;}
+  .row .body{flex:1;min-width:0;}
+  .row .tl{font-size:13.5px;font-weight:700;line-height:1.35;letter-spacing:-.01em;}
+  .row .mt{font-size:11.5px;color:var(--ink-3);margin-top:2px;display:flex;flex-wrap:wrap;gap:2px 8px;}
+  .row .mt b{color:var(--ink-2);font-weight:700;}
+  .row .mt code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:10.5px;background:#f0f2f6;color:#3c4453;padding:1px 4px;border-radius:4px;word-break:break-all;
+  }
+  .views{
+    flex:0 0 auto;text-align:right;font-size:13px;font-weight:800;color:var(--ink);
+    font-variant-numeric:tabular-nums;padding-left:4px;
+  }
+  .views small{display:block;font-size:10.5px;font-weight:600;color:var(--ink-3);}
+
+  /* bars */
+  .barlist{display:grid;gap:9px;margin-top:6px;}
+  .bar{display:grid;grid-template-columns:1fr auto;gap:2px 8px;}
+  .bar .lab{font-size:12.5px;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .bar .val{font-size:12.5px;font-weight:800;font-variant-numeric:tabular-nums;}
+  .bar .track{grid-column:1 / -1;height:7px;border-radius:99px;background:#eef1f7;overflow:hidden;}
+  .bar .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent,#333),color-mix(in srgb,var(--accent,#333) 62%,#fff));}
+  @supports not (background: color-mix(in srgb,#000 50%,#fff)){
+    .bar .fill{background:var(--accent,#333);}
+  }
+
+  /* timeline */
+  .timeline{position:relative;margin:4px 0 0;padding:0 0 0 66px;list-style:none;}
+  .timeline::before{
+    content:"";position:absolute;left:47px;top:8px;bottom:8px;width:2px;background:var(--line);
+  }
+  .timeline li{position:relative;padding:9px 0;}
+  .timeline .time{
+    position:absolute;left:-66px;top:9px;width:40px;text-align:right;
+    font-size:12.5px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;
+  }
+  .timeline .pin{
+    position:absolute;left:-23px;top:13px;width:13px;height:13px;border-radius:50%;
+    background:#fff;border:2.5px solid var(--line);box-shadow:0 0 0 3px #fff;
+  }
+  .timeline li.next .pin{border-color:var(--ink);}
+  .timeline li.yt .pin{border-color:var(--yt);} .timeline li.th .pin{border-color:var(--th);} .timeline li.ts .pin{border-color:var(--ts);}
+  .timeline .what{font-size:13.5px;font-weight:700;}
+  .timeline .det{font-size:11.5px;color:var(--ink-3);margin-top:1px;}
+
+  /* svg chart */
+  .chartbox{margin-top:6px;}
+  .chartbox svg{width:100%;height:auto;display:block;overflow:visible;}
+  .legend{display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-3);margin-top:2px;}
+
+  /* misc */
+  .note{
+    display:flex;gap:9px;background:#f7f9fd;border:1px solid var(--line);border-radius:12px;
+    padding:10px 11px;font-size:12.5px;color:var(--ink-2);margin-top:10px;
+  }
+  .note .ic{flex:0 0 auto;font-size:14px;line-height:1.3;}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:5px 10px;font-size:12.5px;margin:0;}
+  .kv dt{color:var(--ink-3);font-weight:600;}
+  .kv dd{margin:0;font-weight:700;color:var(--ink);}
+  footer.foot{margin:18px 0 0;text-align:center;font-size:11px;color:var(--ink-3);line-height:1.7;}
+  footer.foot a{color:var(--ink-3);}
+  .totop{
+    display:block;margin:14px auto 0;width:max-content;font-size:12px;color:var(--ink-2);
+    text-decoration:none;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-weight:700;
+  }
+  @media (max-width:360px){
+    body{font-size:14.5px;}
+    h1{font-size:21px;}
+    .sum-card .big{font-size:18px;}
+    .sum-card .name{font-size:10.5px;}
+    .stats{grid-template-columns:1fr;}
+  }
+  @media (min-width:600px){
+    .stats{grid-template-columns:repeat(4,1fr);}
+    .summary{gap:12px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top" id="top">
+    <span class="eyebrow">CHANNEL OPS</span>
+    <h1>채널 통합 대시보드</h1>
+    <p class="sub">유튜브 <b>@TinyWow-m6x</b> · 스레드 <b>@chalddop</b> · 티스토리 <b>달구랩</b></p>
+    <div class="stamp">
+      <span>기준 시각 <b>2026-11-25 06:15 KST</b></span>
+      <span>·</span>
+      <span>실제 공개 페이지 확인값</span>
+    </div>
+  </header>
+
+  <!-- summary strip -->
+  <section class="summary" aria-label="채널 핵심 지표 요약">
+    <div class="sum-card yt">
+      <div class="name">▶️ 유튜브</div>
+      <div class="big">11<span class="unit">구독자</span></div>
+      <div class="meta">영상 16개 · 총 7,812회</div>
+    </div>
+    <div class="sum-card th">
+      <div class="name">🧵 스레드</div>
+      <div class="big">2<span class="unit">팔로워</span></div>
+      <div class="meta">30일 4,821회 · 게시 정상</div>
+    </div>
+    <div class="sum-card ts">
+      <div class="name">📝 티스토리</div>
+      <div class="big">13<span class="unit">공개 글</span></div>
+      <div class="meta">임시저장 3 · 어제 방문 13</div>
+    </div>
+  </section>
+
+  <!-- tabs -->
+  <div class="tabs" role="tablist" aria-label="채널별 보기">
+    <button class="tab" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true" data-panel="overview">📊 전체 요약</button>
+    <button class="tab" role="tab" id="tab-youtube" aria-controls="panel-youtube" aria-selected="false" data-panel="youtube">▶️ 유튜브</button>
+    <button class="tab" role="tab" id="tab-threads" aria-controls="panel-threads" aria-selected="false" data-panel="threads">🧵 스레드</button>
+    <button class="tab" role="tab" id="tab-tistory" aria-controls="panel-tistory" aria-selected="false" data-panel="tistory">📝 티스토리</button>
+  </div>
+
+  <!-- ================= OVERVIEW ================= -->
+  <section class="panel active" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
+
+    <div class="card">
+      <h2><span class="dot"></span>한눈에 보는 3채널</h2>
+
+      <h3>▶️ 유튜브 — 채널이 살아나고 있어요</h3>
+      <p class="lead">구독자 <b>4명 → 11명</b>, 영상 <b>11개 → 16개</b>로 늘었습니다. 조회수 1천 회를 넘긴 쇼츠가 <b>6편</b>이고, 어제 저녁 새 롱폼(보이텍 곰, 8분 8초)이 올라왔습니다.</p>
+      <p class="fine">단, 새 롱폼은 11시간 동안 <b>조회 1회</b>, 최근에 올린 쇼츠 몇 편도 1~12회에 머물고 있어요. 제목·썸네일·첫 3초를 손볼 지점입니다.</p>
+
+      <div class="divider"></div>
+
+      <h3>🧵 스레드 — 30일 조회수가 2배로</h3>
+      <p class="lead">30일 조회수 <b>2,277 → 4,821회</b>(+2,544), 조회한 사람 <b>876 → 2,969명</b>, 반응 <b>24 → 42개</b>. 팔로워는 드디어 <b>2명</b>이 됐습니다.</p>
+      <p class="fine">다만 어제 밤 10시 단문 실험은 <b>조회 2회</b>에 그쳤습니다. 이미지 없는 단문은 노출이 거의 안 붙는다는 게 숫자로 확인됐어요.</p>
+
+      <div class="divider"></div>
+
+      <h3>📝 티스토리 — 공개 글 13편 · 임시저장 3편</h3>
+      <p class="lead">어제 하루에만 <b>5편</b>(주식 2 · AI·개발 3)을 공개했습니다. 카테고리도 <b>주식·증시 2 / AI·개발 3</b>으로 자리를 잡았고, 내일·모레용 임시저장 3편이 대기 중입니다.</p>
+      <p class="fine">방문자는 아직 적습니다(어제 13명). 애드센스·검색 유입은 글 수가 쌓이는 2~4주 뒤에 판단하는 게 맞습니다.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>오늘(11/25) 자동화 타임라인</h2>
+      <p class="lead">지금 06:15 — 첫 자동화까지 <b>약 1시간 45분</b> 남았습니다.</p>
+      <ul class="timeline">
+        <li class="th next">
+          <span class="time">08:00</span><span class="pin"></span>
+          <div class="what">스레드 타래 게시 <span class="chip th">스타일 1</span></div>
+          <div class="det">화이트/크림 메모지형 카드 · AI·코인·주식 5편 타래 (A/B/C 이미지 테스트 1회차)</div>
+        </li>
+        <li class="ts">
+          <span class="time">08:15</span><span class="pin"></span>
+          <div class="what">티스토리 아침 글 <span class="chip ts">주식·증시</span></div>
+          <div class="det">간밤 미국장 마감 + 오늘 장전 체크포인트</div>
+        </li>
+        <li class="th">
+          <span class="time">19:00</span><span class="pin"></span>
+          <div class="what">스레드 타래 게시 <span class="chip th">스타일 2</span></div>
+          <div class="det">굵은 타이포 + 핵심 숫자 1개 매거진 표지형</div>
+        </li>
+        <li class="ts">
+          <span class="time">20:30</span><span class="pin"></span>
+          <div class="what">티스토리 저녁 글 <span class="chip ts">AI·개발</span></div>
+          <div class="det">AI 뉴스 + 코딩 팁 + GitHub 트렌딩</div>
+        </li>
+        <li class="th">
+          <span class="time">22:00</span><span class="pin"></span>
+          <div class="what">스레드 단문</div>
+          <div class="det">카드 없는 3~5줄 공감형 (어제는 조회 2회 — 오늘은 태그·첫 문장을 바꿔 재실험)</div>
+        </li>
+      </ul>
+      <div class="note">
+        <span class="ic">💬</span>
+        <span>남의 글에 다는 <b>댓글 소통 루틴은 11/25·11/26 이틀 휴식</b>입니다(스팸 경고 3건 이후 계정 보호). <b>11/27(금) 09:00</b>에 자동 재개됩니다.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="dot"></span>오늘 먼저 손볼 것 3가지</h2>
+      <ul class="clean">
+        <li>
+          <div class="row"><span class="rank top">1</span>
+            <div class="body">
+              <div class="tl">유튜브 새 롱폼 구제하기</div>
+              <div class="mt">보이텍 롱폼 <b>조회 1회 / 11시간</b> · 썸네일 교체(준비된 3종 중 1장) + 제목 첫 단어를 한국어로</div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="row"><span class="rank top">2</span>
+            <div class="body">
+              <div class="tl">스레드 밤 10시 단문 형식 재실험</div>
+              <div class="mt">어제 단문 <b>조회 2회</b> → 이미지 1장 또는 2편 타래로 바꾸고 공식 주제 태그 유지</div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="row"><span class="rank top">3</span>
+            <div class="body">
+              <div class="tl">티스토리 임시저장 3편 발행 순서 정하기</div>
+              <div class="mt">아침(주식)·저녁(AI) 자동 회차와 겹치지 않게, 남는 시간대에 1편씩 공개</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= YOUTUBE ================= -->
+  <section class="panel" id="panel-youtube" role="tabpanel" aria-labelledby="tab-youtube">
+    <div class="card" style="--accent:var(--yt)">
+      <div class="chan">
+        <div class="avatar">▶</div>
+        <div class="who">
+          <div class="t">Tiny Wow</div>
+          <div class="h">@TinyWow-m6x · 대한민국 · 가입 2026.11.22</div>
+        </div>
+        <a class="btn solid" href="https://www.youtube.com/@TinyWow-m6x" target="_blank" rel="noopener">채널 열기 ↗</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="k">구독자</div><div class="v">11<small>명</small></div><div class="d"><span class="chip up">▲ +7</span> 어제 4명</div></div>
+        <div class="stat"><div class="k">동영상</div><div class="v">16<small>개</small></div><div class="d"><span class="chip up">▲ +5</span> 어제 11개</div></div>
+        <div class="stat"><div class="k">채널 총 조회수</div><div class="v">7,812<small>회</small></div><div class="d">롱폼 3 + 쇼츠 13</div></div>
+        <div class="stat"><div class="k">1천 회 넘은 쇼츠</div><div class="v">6<small>편</small></div><div class="d">최고 1,701회</div></div>
+      </div>
+
+      <div class="note">
+        <span class="ic">🏷️</span>
+        <span>브랜딩은 실제 반영되어 있습니다 — 채널 배너(크림색 “Tiny Wow”, 수달·미어캣·로켓 일러스트)와 소개글 <b>“작은 순간, 큰 와우! ✨”</b>, 프로필 사진까지 적용 완료.</span>
+      </div>
+      <p class="fine">
+        바로가기 ·
+        <a href="https://www.youtube.com/@TinyWow-m6x/videos" target="_blank" rel="noopener">동영상</a> ·
+        <a href="https://www.youtube.com/@TinyWow-m6x/shorts" target="_blank" rel="noopener">Shorts</a> ·
+        <a href="https://www.youtube.com/@TinyWow-m6x/about" target="_blank" rel="noopener">정보</a>
+      </p>
+    </div>
+
+    <div class="card" style="--accent:var(--yt)">
+      <h2><span class="dot"></span>롱폼 3편</h2>
+      <ul class="clean">
+        <li>
+          <a class="row" href="https://www.youtube.com/watch?v=0-yyuNBaeeU" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">The Bear Who Joined an Army: The True Story of Wojtek</div>
+              <div class="mt">8분 8초 · <b>11시간 전</b> 업로드</div>
+            </div>
+            <div class="views">1<small>조회수</small></div>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="https://www.youtube.com/watch?v=5WHMnGVS0rI" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">세계의 야생동물 🐻🐯🐼 | 미국 · 인도 · 중국 · 일본</div>
+              <div class="mt">2분 29초 · 2일 전</div>
+            </div>
+            <div class="views">37<small>조회수</small></div>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="https://www.youtube.com/watch?v=MYGjdsaCqks" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">보기만 해도 웃음 나는 귀여운 동물들 🥰 | 아기 들소, 판다, 레서판다, 나라 사슴, 고양이 섬</div>
+              <div class="mt">2분 23초 · 2일 전</div>
+            </div>
+            <div class="views">26<small>조회수</small></div>
+          </a>
+        </li>
+      </ul>
+      <p class="fine">롱폼 3편 합계 64회. 새로 올린 보이텍 편은 11시간 동안 1회라, 지금이 제목·썸네일을 바꿀 골든타임입니다.</p>
+    </div>
+
+    <div class="card" style="--accent:var(--yt)">
+      <h2><span class="dot"></span>쇼츠 조회수 순위</h2>
+      <div class="barlist">
+        <div class="bar"><span class="lab">곰·호랑이·판다·온천 원숭이</span><span class="val">1,701</span><div class="track"><div class="fill" style="width:100%"></div></div></div>
+        <div class="bar"><span class="lab">아기 하마, 거북이 엄마를 만나다</span><span class="val">1,301</span><div class="track"><div class="fill" style="width:76.5%"></div></div></div>
+        <div class="bar"><span class="lab">인사하는 사슴·느긋한 판다·고양이 섬</span><span class="val">1,227</span><div class="track"><div class="fill" style="width:72.1%"></div></div></div>
+        <div class="bar"><span class="lab">Baby Farm Animals: Only ONE Comes Home</span><span class="val">1,202</span><div class="track"><div class="fill" style="width:70.7%"></div></div></div>
+        <div class="bar"><span class="lab">Owls Can't Move Their Eyes</span><span class="val">1,176</span><div class="track"><div class="fill" style="width:69.1%"></div></div></div>
+        <div class="bar"><span class="lab">Why Do Sea Otters Hold HANDS?</span><span class="val">1,163</span><div class="track"><div class="fill" style="width:68.4%"></div></div></div>
+      </div>
+
+      <h3>그 아래 (최근 업로드가 대부분)</h3>
+      <ul class="clean">
+        <li><a class="row" href="https://www.youtube.com/shorts/WbxaqkQ_2Ow" target="_blank" rel="noopener"><div class="body"><div class="tl">An Old Dog's Day: Slower, Grayer, Still Yours</div><div class="mt">동물·감성</div></div><div class="views">705<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/S6CyNmiZtI0" target="_blank" rel="noopener"><div class="body"><div class="tl">This Bear Was a Real Soldier 🐻</div><div class="mt">보이텍 숏츠 · 롱폼과 같은 소재</div></div><div class="views">101<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/O05AmUV3eEU" target="_blank" rel="noopener"><div class="body"><div class="tl">6 Baby Animals. You Can Keep Only ONE 😳</div><div class="mt">동물·선택형</div></div><div class="views">49<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/alq9efu-tkI" target="_blank" rel="noopener"><div class="body"><div class="tl">Korean parents use a goblin to discipline kids 👹</div><div class="mt">한국 문화</div></div><div class="views">23<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/6XaQuPEc178" target="_blank" rel="noopener"><div class="body"><div class="tl">4 Baby Animals: Guess What They Grow Into 🤔</div><div class="mt">동물·퀴즈형</div></div><div class="views">12<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/QsxFXaMPWs4" target="_blank" rel="noopener"><div class="body"><div class="tl">Dolphins Tell These Fishermen When to Throw 🐬</div><div class="mt">동물·이색 사실</div></div><div class="views">3<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/WPlUuZsbRLM" target="_blank" rel="noopener"><div class="body"><div class="tl">Why Do Penguins Waddle? 🐧</div><div class="mt">동물·호기심</div></div><div class="views">1<small>조회수</small></div></a></li>
+      </ul>
+      <p class="fine">쇼츠 13편 합계 약 8,664회(롱폼 포함 시 약 8,728회). 채널 화면의 총 조회수(7,812회)와 영상별 합계가 조금 다른데, 집계 시점·반영 지연 때문입니다. 1천 회를 넘긴 6편은 모두 <b>동물·감성 소재</b>이고, 최근 올린 영어 제목 쇼츠는 대부분 한 자릿수~100회입니다.</p>
+    </div>
+
+    <div class="card" style="--accent:var(--yt)">
+      <h2><span class="dot"></span>준비된 자산 · 다음 할 일</h2>
+      <h3>이미 만들어 둔 것</h3>
+      <dl class="kv">
+        <dt>범용 배너</dt><dd><code>downloads/tinywow-banner-general.png</code> (2560×1440)</dd>
+        <dt>썸네일 3종</dt><dd><code>tinywow-thumb-pack-1.png</code> · <code>-2.png</code> · <code>-3.png</code></dd>
+        <dt>대본 3편</dt><dd><code>downloads/tinywow-scripts-pack-2026-11-24.md</code><br>① 문어 심장 3개·파란 피(숏츠) ② 체커 그림자 착시(숏츠) ③ 작은 경이로움 5가지(롱폼 3분)</dd>
+        <dt>소개글·고정 댓글</dt><dd>범용 소개글 반영 완료 · 고정 댓글 템플릿 3종(선택형·호기심형·문화/스토리형)</dd>
+      </dl>
+      <h3>다음 할 일</h3>
+      <ul class="clean">
+        <li><div class="row"><span class="rank top">1</span><div class="body"><div class="tl">보이텍 롱폼 썸네일·제목 교체</div><div class="mt">11시간 1회 → 준비된 썸네일로 바꾸고 한국어 제목 병기</div></div></div></li>
+        <li><div class="row"><span class="rank top">2</span><div class="body"><div class="tl">대본 3편 업로드 (숏츠 2 + 롱폼 1)</div><div class="mt">업로드 직후 10분 내 고정 댓글 달기 — 지금은 대부분 댓글 0~1개</div></div></div></li>
+        <li><div class="row"><span class="rank top">3</span><div class="body"><div class="tl">영어 제목 쇼츠에 한국어 제목 병기</div><div class="mt">구독자 유입이 국내 중심이라 검색·추천 노출에 불리</div></div></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= THREADS ================= -->
+  <section class="panel" id="panel-threads" role="tabpanel" aria-labelledby="tab-threads">
+    <div class="card" style="--accent:var(--th)">
+      <div class="chan">
+        <div class="avatar">🧵</div>
+        <div class="who">
+          <div class="t">도깨비</div>
+          <div class="h">@chalddop · AI · 코인 · 주식 매일 3번 (08·19·22시)</div>
+        </div>
+        <a class="btn solid" href="https://www.threads.com/@chalddop" target="_blank" rel="noopener">프로필 열기 ↗</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="k">팔로워</div><div class="v">2<small>명</small></div><div class="d"><span class="chip up">▲ +1</span> 어제 1명</div></div>
+        <div class="stat"><div class="k">30일 조회수</div><div class="v">4,821<small>회</small></div><div class="d"><span class="chip up">▲ +2,544</span> 어제 2,277</div></div>
+        <div class="stat"><div class="k">조회한 사람</div><div class="v">2,969<small>명</small></div><div class="d"><span class="chip up">▲ +2,093</span> 어제 876</div></div>
+        <div class="stat"><div class="k">반응</div><div class="v">42<small>개</small></div><div class="d"><span class="chip up">▲ +18</span> · 순 팔로워 +0</div></div>
+      </div>
+      <p class="fine">프로필 상단 표시는 <b>최근 조회수 2,329회</b>. 30일 인사이트는 로그인 세션에서 직접 확인한 값입니다.</p>
+
+      <h3>30일 조회수 추이 (관찰 기록)</h3>
+      <div class="chartbox">
+        <svg viewBox="0 0 600 170" role="img" aria-label="30일 조회수 추이: 463 → 1,023 → 1,458 → 2,277 → 4,821">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#111318" stop-opacity=".16"/>
+              <stop offset="100%" stop-color="#111318" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line x1="0" y1="140" x2="600" y2="140" stroke="#e3e7ef" stroke-width="1"/>
+          <path d="M0,129 L150,115 L300,105 L450,85 L600,24 L600,140 L0,140 Z" fill="url(#g1)"/>
+          <polyline points="0,129 150,115 300,105 450,85 600,24" fill="none" stroke="#111318" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="0" cy="129" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="150" cy="115" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="300" cy="105" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="450" cy="85" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="600" cy="24" r="4.5" fill="#111318"/>
+          <g font-size="17" font-weight="700" fill="#4d5666" font-family="inherit">
+            <text x="4" y="118">463</text>
+            <text x="120" y="104">1,023</text>
+            <text x="272" y="94">1,458</text>
+            <text x="414" y="74">2,277</text>
+            <text x="508" y="14" fill="#111318">4,821</text>
+          </g>
+        </svg>
+        <div class="legend"><span>11/22 밤</span><span>11/23 아침</span><span>11/23 밤</span><span>11/24 오후</span><span>11/25 06시</span></div>
+      </div>
+      <p class="fine">조회수는 “최근 30일 누적”이라 하루치가 아니라 계속 쌓이는 값입니다. 16시간 만에 2,500회 넘게 늘었습니다. (가로축은 기록한 순서이고 간격은 실제 시간과 다릅니다.)</p>
+    </div>
+
+    <div class="card" style="--accent:var(--th)">
+      <h2><span class="dot"></span>최근 게시물과 반응</h2>
+      <ul class="clean">
+        <li>
+          <a class="row" href="https://www.threads.com/@chalddop/post/DgIBIOmkm2_" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">밤 10시 단문 — “오늘 불장에 올라타셨나요, 현금 쥐고 관망하셨나요?”</div>
+              <div class="mt">11/24 22:03 · 주제 태그 <b>주식</b> · 좋아요 0 · 답글 0</div>
+            </div>
+            <div class="views">2<small>조회</small></div>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="https://www.threads.com/@chalddop/post/DgHsuvREvAT" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">19:00 타래 1/5 — 주식은 매수 사이드카, 코인은 6만 달러 재시험</div>
+              <div class="mt">11/24 19:04 · 카드 이미지 · 첫 글 좋아요 0 · 답글 5 · 조회한 사람 57</div>
+            </div>
+            <div class="views">71<small>조회</small></div>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="https://www.threads.com/@chalddop/post/DgGhK8Nkhbr" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">08:00 타래 1/5 — 젠슨 황 복귀로 판이 뒤집힌 아침</div>
+              <div class="mt">11/24 08:04 · 카드 이미지 · 좋아요 1 · 답글 5 · 리포스트 1 · 조회한 사람 36</div>
+            </div>
+            <div class="views">62<small>조회</small></div>
+          </a>
+        </li>
+      </ul>
+      <div class="note">
+        <span class="ic">💬</span>
+        <span>어제 달린 실제 반응: <b>@lazyboss.ai</b> — “스하리! 읽다가 괜히 힘나네”. 08:00 타래에는 리포스트 1건이 붙었습니다.</span>
+      </div>
+      <p class="fine">타래 2/5~5/5는 각각 좋아요 0~1 · 답글 1~2 수준입니다. 22:00 단문은 <b>조회 2회</b>로, 이미지 없는 단문은 이 계정에서 노출이 거의 붙지 않는다는 결과가 나왔습니다.</p>
+    </div>
+
+    <div class="card" style="--accent:var(--th)">
+      <h2><span class="dot"></span>자동화 설정과 이미지 A/B/C 테스트</h2>
+      <h3>게시 일정 — 하루 3회</h3>
+      <dl class="kv">
+        <dt>08:00</dt><dd>5편 타래 + 요약 카드 이미지 (아침 브리핑)</dd>
+        <dt>19:00</dt><dd>5편 타래 + 요약 카드 이미지 (저녁 정리)</dd>
+        <dt>22:00</dt><dd>카드 없는 단문 3~5줄 (공감·질문형 실험)</dd>
+      </dl>
+
+      <h3>이미지 스타일 순환 (11/25 시작)</h3>
+      <ul class="clean">
+        <li><div class="row"><span class="rank top">A</span><div class="body"><div class="tl">화이트/크림 메모지·신문 스크랩형</div><div class="mt"><b>11/25 08:00</b> 첫 적용</div></div></div></li>
+        <li><div class="row"><span class="rank">B</span><div class="body"><div class="tl">굵은 타이포 + 핵심 숫자 1개 매거진 표지형</div><div class="mt">11/25 19:00</div></div></div></li>
+        <li><div class="row"><span class="rank">C</span><div class="body"><div class="tl">주제별 AI 일러스트 생성형</div><div class="mt">11/26 08:00</div></div></div></li>
+      </ul>
+      <p class="fine">각 스타일이 2~3회씩 쌓이면 조회수를 비교해 가장 잘 나온 스타일로 주력을 바꿀 예정입니다.</p>
+
+      <h3>댓글 소통 루틴</h3>
+      <div class="note">
+        <span class="ic">⏸️</span>
+        <span><b>11/25(수) · 11/26(목) 휴식</b> → <b>11/27(금) 09:00</b> 자동 재개. 11/24 밤 스팸 경고로 삭제된 댓글이 3건 있어 계정 보호를 위해 간격을 크게 두고 다시 시작합니다.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TISTORY ================= -->
+  <section class="panel" id="panel-tistory" role="tabpanel" aria-labelledby="tab-tistory">
+    <div class="card" style="--accent:var(--ts)">
+      <div class="chan">
+        <div class="avatar">📝</div>
+        <div class="who">
+          <div class="t">달구랩</div>
+          <div class="h">dalgulab.tistory.com · 아침 주식 / 저녁 AI·개발</div>
+        </div>
+        <a class="btn solid" href="https://dalgulab.tistory.com" target="_blank" rel="noopener">블로그 열기 ↗</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="k">공개 글</div><div class="v">13<small>편</small></div><div class="d">어제 +5편</div></div>
+        <div class="stat"><div class="k">임시저장</div><div class="v">3<small>편</small></div><div class="d">내일·모레용</div></div>
+        <div class="stat"><div class="k">어제 방문</div><div class="v">13<small>명</small></div><div class="d">오늘 0 (06:15 기준)</div></div>
+        <div class="stat"><div class="k">누적 방문</div><div class="v">23<small>명</small></div><div class="d">카운터 표시값</div></div>
+      </div>
+
+      <h3>카테고리</h3>
+      <p style="margin:0;display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="chip ts">주식·증시 2</span>
+        <span class="chip ts">AI·개발 3</span>
+        <span class="chip">앱개발기 3</span>
+        <span class="chip">유튜브 분석기 2</span>
+        <span class="chip">뷰포인트 1</span>
+        <span class="chip">개발 삽질 노트 1</span>
+        <span class="chip">약관·방침 4</span>
+      </p>
+      <p class="fine">분류 전체보기는 <b>공개 글 13편</b>이고, 카테고리별 숫자는 임시저장 3편까지 포함한 값이라 합계가 16입니다. 홈은 매거진 커버(주식·증시 최신 / AI·개발 최신)로 바뀌어 약관·방침 글이 첫 화면에 노출되지 않습니다.</p>
+    </div>
+
+    <div class="card" style="--accent:var(--ts)">
+      <h2><span class="dot"></span>최근 공개 글 5편 (모두 11/24)</h2>
+      <ul class="clean">
+        <li>
+          <a class="row" href="https://dalgulab.tistory.com/12" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">반도체·국장 흐름 읽는 3가지 핵심 지표: SOX·야간선물·원/달러</div>
+              <div class="mt"><span class="chip ts">주식·증시</span> 22:45 발행 · 태그 8개</div>
+            </div>
+            <div class="views">12<small>글 번호</small></div>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="https://dalgulab.tistory.com/9" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">젠슨 황 11일 만에 복귀! 나스닥 +6.51%·코스피 야간선물 +7.06% 급반등</div>
+              <div class="mt"><span class="chip ts">주식·증시</span> 08:59 발행 · 첫 자동 발행 글</div>
+            </div>
+            <div class="views">9<small>글 번호</small></div>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="https://dalgulab.tistory.com/13" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">MCP(Model Context Protocol)란? 클로드·커서에서 파일과 도구 연결하기</div>
+              <div class="mt"><span class="chip ts">AI·개발</span> 22:47 발행 · 에버그린</div>
+            </div>
+            <div class="views">13<small>글 번호</small></div>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="https://dalgulab.tistory.com/11" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">2026년 AI 코딩 도구 실전 비교: Claude Code vs Cursor vs Codex</div>
+              <div class="mt"><span class="chip ts">AI·개발</span> 22:28 발행 · 애드센스용 칼럼</div>
+            </div>
+            <div class="views">11<small>글 번호</small></div>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="https://dalgulab.tistory.com/10" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">클로드 십(Claude Ship)과 구글 gBench 공개! AI 뉴스·코딩 팁·GitHub 트렌딩</div>
+              <div class="mt"><span class="chip ts">AI·개발</span> 21:36 발행 · 저녁 자동 회차</div>
+            </div>
+            <div class="views">10<small>글 번호</small></div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card" style="--accent:var(--ts)">
+      <h2><span class="dot"></span>임시저장 3편 (대기 중)</h2>
+      <ul class="clean">
+        <li><div class="row"><span class="rank">1</span><div class="body"><div class="tl">미국 증시 프리마켓·정규장·애프터마켓 시간과 서머타임 정리</div><div class="mt"><span class="chip ts">주식·증시</span> 태그 8개 · 원고 <code>downloads/tistory-2026-11-24-draft1.md</code></div></div></div></li>
+        <li><div class="row"><span class="rank">2</span><div class="body"><div class="tl">바이브코딩할 때 AI가 엉뚱한 코드 안 짜게 만드는 CLAUDE.md 작성 가이드</div><div class="mt"><span class="chip ts">AI·개발</span> 태그 8개 · 원고 <code>downloads/tistory-2026-11-24-draft2.md</code></div></div></div></li>
+        <li><div class="row"><span class="rank">3</span><div class="body"><div class="tl">GitHub 오픈소스 프로젝트 처음 볼 때 5분 만에 구조 파악하는 순서</div><div class="mt"><span class="chip ts">AI·개발</span> 태그 8개 · 원고 <code>downloads/tistory-2026-11-24-draft3.md</code></div></div></div></li>
+      </ul>
+      <p class="fine">임시저장은 공개 목록·글 관리 화면에 나오지 않습니다. 새 글 편집 화면 하단 <b>“임시저장 개수 3개”</b>에서 확인됩니다.</p>
+    </div>
+
+    <div class="card" style="--accent:var(--ts)">
+      <h2><span class="dot"></span>발행 일정</h2>
+      <dl class="kv">
+        <dt>매일 08:15</dt><dd><span class="chip ts">주식·증시</span> 간밤 미장 마감 + 국장 마감 복기 + 오늘 장전 체크포인트</dd>
+        <dt>매일 20:30</dt><dd><span class="chip ts">AI·개발</span> AI 최신 뉴스 + 실전 코딩 팁 + GitHub 트렌딩</dd>
+        <dt>형식</dt><dd>1,500~2,500자 · 태그 5~8개 · 요약 카드 1장 · 카테고리 고정</dd>
+      </dl>
+      <p class="fine">오늘 08:15 회차가 14번 글이 됩니다. 하루 최대 15건까지 가능하지만 초기 검색 노출을 위해 하루 2회를 유지하고 있습니다.</p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div>수집 2026-11-25 06:15 KST · 각 플랫폼 화면 표시값 기준</div>
+    <div>
+      <a href="https://www.youtube.com/@TinyWow-m6x" target="_blank" rel="noopener">youtube.com/@TinyWow-m6x</a> ·
+      <a href="https://www.threads.com/@chalddop" target="_blank" rel="noopener">threads.com/@chalddop</a> ·
+      <a href="https://dalgulab.tistory.com" target="_blank" rel="noopener">dalgulab.tistory.com</a>
+    </div>
+    <a class="totop" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ 맨 위로</a>
+  </footer>
+</div>
+
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+
+  function activate(name, opts) {
+    var found = false;
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('data-panel') === name;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      if (on) { found = true; }
+    });
+    if (!found) { name = 'overview'; tabs[0].setAttribute('aria-selected', 'true'); }
+    panels.forEach(function (p) {
+      p.classList.toggle('active', p.id === 'panel-' + name);
+    });
+    if (opts && opts.focus) {
+      var active = document.querySelector('.tab[aria-selected="true"]');
+      if (active) {
+        if (opts.scroll && active.scrollIntoView) {
+          active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+        active.focus({ preventScroll: true });
+      }
+    }
+    if (opts && opts.scroll) {
+      var bar = document.querySelector('.tabs');
+      var stuck = bar.getBoundingClientRect().top <= 1;
+      if (stuck) {
+        var target = document.getElementById('panel-' + name);
+        if (target) {
+          var y = target.getBoundingClientRect().top + window.pageYOffset - bar.offsetHeight - 4;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
+      }
+    }
+    try {
+      if (history.replaceState) { history.replaceState(null, '', '#' + name); }
+    } catch (e) {}
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () { activate(tab.getAttribute('data-panel'), { scroll: true }); });
+    tab.addEventListener('keydown', function (ev) {
+      var i = tabs.indexOf(tab), next = null;
+      if (ev.key === 'ArrowRight') { next = tabs[(i + 1) % tabs.length]; }
+      if (ev.key === 'ArrowLeft') { next = tabs[(i - 1 + tabs.length) % tabs.length]; }
+      if (ev.key === 'Home') { next = tabs[0]; }
+      if (ev.key === 'End') { next = tabs[tabs.length - 1]; }
+      if (next) {
+        ev.preventDefault();
+        activate(next.getAttribute('data-panel'), { focus: true, scroll: true });
+      }
+    });
+  });
+
+  var initial = (location.hash || '').replace('#', '');
+  if (initial && document.getElementById('panel-' + initial)) {
+    activate(initial);
+  }
+})();
+</script>
+</body>
+</html>
