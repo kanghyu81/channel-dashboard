@@ -1,18 +1,25 @@
 {
-  "schema": 1,
-  "note": "채널 통합 대시보드 누적 기록. 새 측정값이 나오면 snapshots 배열 끝에 한 항목을 추가한다. 모든 값은 공개 페이지에서 확인한 실제 값.",
-  "channels": {
-    "youtube": { "name": "Tiny Wow", "handle": "@TinyWow-m6x", "url": "https://www.youtube.com/@TinyWow-m6x" },
-    "threads": { "name": "스레드", "handle": "@chalddop", "url": "https://www.threads.com/@chalddop" },
-    "tistory": { "name": "달구랩", "url": "https://dalgulab.tistory.com" }
+ "schema": 1,
+ "note": "채널 통합 대시보드 누적 기록. 새 측정값이 나오면 snapshots 배열 끝에 한 항목을 추가한다. 모든 값은 공개 페이지에서 확인한 실제 값.",
+ "channels": {
+  "youtube": { "name": "Tiny Wow", "handle": "@TinyWow-m6x", "url": "https://www.youtube.com/@TinyWow-m6x" },
+  "threads": { "name": "스레드", "handle": "@chalddop", "url": "https://www.threads.com/@chalddop" },
+  "tistory": { "name": "달구랩", "url": "https://dalgulab.tistory.com" }
+ },
+ "snapshots": [
+  {
+   "at": "2026-11-25T06:15:00+09:00",
+   "source": "대시보드 최초 배포값 (2026-11-25 06:15 KST 기준, 공개 페이지 확인값)",
+   "youtube": { "subscribers": 11, "videos": 16, "totalViews": 7812 },
+   "threads": { "followers": 2, "views30d": 4821, "visitors30d": 2969, "reactions30d": 42, "status": "게시 정상" },
+   "tistory": { "publicPosts": 13, "drafts": 3, "visitsYesterday": 13 }
   },
-  "snapshots": [
-    {
-      "at": "2026-11-25T06:15:00+09:00",
-      "source": "대시보드 최초 배포값 (2026-11-25 06:15 KST 기준, 공개 페이지 확인값)",
-      "youtube": { "subscribers": 11, "videos": 16, "totalViews": 7812 },
-      "threads": { "followers": 2, "views30d": 4821, "visitors30d": 2969, "reactions30d": 42, "status": "게시 정상" },
-      "tistory": { "publicPosts": 13, "drafts": 3, "visitsYesterday": 13 }
-    }
-  ]
+  {
+   "at": "2026-11-25T11:28:00+09:00",
+   "source": "2026-11-25 오전 수동 갱신 (공개 페이지·인사이트 확인값)",
+   "youtube": { "subscribers": 13, "videos": 18, "totalViews": 7812 },
+   "threads": { "followers": 2, "views30d": 5481, "visitors30d": 3506, "reactions30d": 47, "status": "게시 정상" },
+   "tistory": { "publicPosts": 14, "drafts": 3, "visitsYesterday": 13, "visitorsYesterday": 3, "visitsToday": 6, "visitorsToday": 5 }
+  }
+ ]
 }
