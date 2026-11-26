@@ -187,6 +187,86 @@
      "category": "주식·증시"
     }
    }
+  },
+  {
+   "at": "2026-11-26T22:35:00+09:00",
+   "source": "2026-11-26 밤 자동 갱신 (예약 작업 · 공개 페이지·인사이트·관리자 통계 확인값)",
+   "youtube": {
+    "subscribers": 29,
+    "videos": 21,
+    "totalViews": 13458,
+    "longform": {
+     "hachiko": 39,
+     "wojtek": 36,
+     "wildlife": 40,
+     "cuteAnimals": 29,
+     "sum": 144
+    },
+    "shorts": {
+     "top": 1700,
+     "over1000": 10,
+     "publicCount": 17,
+     "latest": {
+      "elephants": 0,
+      "goldfish": 285,
+      "snowCat": 1000,
+      "dogsFood": 915,
+      "hachiko": 252,
+      "penguins": 1200,
+      "dolphins": 701,
+      "oldDog": 1000,
+      "bearSoldier": 336,
+      "otters": 1100,
+      "fourBabyAnimals": 1000,
+      "hippoTortoise": 1600,
+      "farmAnimals": 1200,
+      "owls": 1100,
+      "sixBabyAnimals": 51
+     },
+     "droppedFromList": {
+      "goblin": 24
+     },
+     "sumApprox": 14640
+    }
+   },
+   "threads": {
+    "followers": 2,
+    "views30d": 6709,
+    "visitors30d": 4515,
+    "reactions30d": 49,
+    "netFollowers": 1,
+    "status": "게시 정상 (08:00·19:00·22:00 3회 모두 발행)",
+    "postsToday": {
+     "08:00": 2,
+     "19:00": 67,
+     "22:00": 28
+    },
+    "audience": {
+     "followers": 1,
+     "nonFollowers": 4514
+    }
+   },
+   "tistory": {
+    "publicPosts": 17,
+    "drafts": 3,
+    "visitsYesterday": 9,
+    "visitorsYesterday": 8,
+    "visitsToday": 3,
+    "visitorsToday": 3,
+    "viewsTotal": 35,
+    "visitorsTotal": 20,
+    "subscribers": 0,
+    "inflow": {
+     "search": "0%",
+     "sns": "8%",
+     "etc": "92%"
+    },
+    "latestPost": {
+     "id": 17,
+     "publishedAt": "2026-11-26T20:35:00+09:00",
+     "category": "AI·개발"
+    }
+   }
   }
  ]
 }
