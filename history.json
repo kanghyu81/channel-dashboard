@@ -346,6 +346,93 @@
      "category": "주식·증시"
     }
    }
+  },
+  {
+   "at": "2026-11-27T22:35:00+09:00",
+   "source": "2026-11-27 밤 자동 갱신 (예약 작업 · 공개 페이지·인사이트·관리자 통계 확인값)",
+   "youtube": {
+    "subscribers": 33,
+    "videos": 24,
+    "totalViews": 17061,
+    "longform": {
+     "knut": 4,
+     "hachiko": 58,
+     "wojtek": 37,
+     "wildlife": 40,
+     "cuteAnimals": 29,
+     "sum": 168
+    },
+    "shorts": {
+     "top": 1700,
+     "over1000": 11,
+     "publicCount": 19,
+     "latest": {
+      "dogFollows": 985,
+      "polarBear": 478,
+      "elephants": 990,
+      "goldfish": 863,
+      "snowCat": 1000,
+      "dogsFood": 1000,
+      "hachiko": 329,
+      "penguins": 1200,
+      "dolphins": 772,
+      "oldDog": 1000,
+      "bearSoldier": 343,
+      "otters": 1100,
+      "fourBabyAnimals": 1100,
+      "hippoTortoise": 1700,
+      "farmAnimals": 1300,
+      "owls": 1100,
+      "sixBabyAnimals": 52,
+      "deer": 1200,
+      "bears": 1700
+     },
+     "sumApprox": 18212
+    }
+   },
+   "threads": {
+    "followers": 3,
+    "views30d": 10769,
+    "visitors30d": 8238,
+    "reactions30d": 60,
+    "netFollowers": 1,
+    "status": "게시 정상 (08:00·19:00·22:00 3회 모두 발행 · 21:00 댓글 소통 3건)",
+    "postsToday": {
+     "08:00": 85,
+     "19:00": 53,
+     "22:00": 20
+    },
+    "posts11_26": {
+     "08:00": 3,
+     "19:00": 109,
+     "22:00": 73
+    },
+    "audience": {
+     "followers": 2,
+     "nonFollowers": 8236
+    }
+   },
+   "tistory": {
+    "publicPosts": 19,
+    "drafts": 3,
+    "visitsYesterday": 3,
+    "visitorsYesterday": 3,
+    "visitsToday": 2,
+    "visitorsToday": 2,
+    "viewsTotal": 37,
+    "visitorsTotal": 22,
+    "subscribers": 0,
+    "inflow": {
+     "search": "0%",
+     "sns": "0%",
+     "etc": "100%"
+    },
+    "latestPost": {
+     "id": 19,
+     "publishedAt": "2026-11-27T20:34:00+09:00",
+     "category": "AI·개발"
+    }
+   }
   }
  ]
 }
