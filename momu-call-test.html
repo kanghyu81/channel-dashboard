@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모무 유저스크립트 테스트</title>
+<style>
+  body { font-family: -apple-system, "Malgun Gothic", sans-serif; margin: 0; padding: 16px 16px 120px; color: #111; }
+  h1 { font-size: 18px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { border: 1px solid #dde2e8; padding: 8px 6px; text-align: left; }
+  th { background: #f3f5f8; }
+  button { margin: 12px 8px 12px 0; padding: 10px 14px; font-size: 14px; }
+  #log { background: #0f1115; color: #d7ffd7; font-size: 12px; padding: 10px; border-radius: 8px; white-space: pre-wrap; margin-top: 12px; }
+</style>
+</head>
+<body>
+<h1>모무 유저스크립트 테스트 페이지</h1>
+<p>아래 표의 번호가 파란 밑줄 링크로 바뀌고, 번호를 누르면 하단 바가 뜨면 정상입니다.</p>
+
+<table id="tbl">
+  <thead><tr><th>이름</th><th>연락처</th><th>등록일</th></tr></thead>
+  <tbody id="rows">
+    <tr><td>김회원</td><td class="tel">010-1234-5678</td><td>2026-11-28</td></tr>
+    <tr><td>이회원</td><td class="tel">+82 10-2345-6789</td><td>2026-11-27</td></tr>
+    <tr><td>박회원</td><td class="tel">02-123-4567</td><td>2026-11-26</td></tr>
+    <tr><td>최회원</td><td class="tel">010 3456 7890</td><td>2026-11-25</td></tr>
+  </tbody>
+</table>
+
+<button id="addBtn">행 추가 (동적)</button>
+<button id="bulkBtn">검색 결과처럼 표 다시 그리기</button>
+<button id="resetBtn">초기화</button>
+
+<div id="log"></div>
+
+<script>
+  window.__testLog = [];
+  function log(msg) {
+    window.__testLog.push(new Date().toISOString().slice(11, 23) + ' ' + msg);
+    document.getElementById('log').textContent = window.__testLog.join('\n');
+  }
+
+  var seq = 0;
+  document.getElementById('addBtn').addEventListener('click', function () {
+    seq++;
+    var tr = document.createElement('tr');
+    var num = '010-9000-' + String(1000 + seq).slice(1);
+    tr.innerHTML = '<td>동적회원' + seq + '</td><td class="tel">' + num + '</td><td>2026-11-28</td>';
+    document.getElementById('rows').appendChild(tr);
+    log('행 추가: ' + num);
+  });
+
+  var page = 0;
+  document.getElementById('bulkBtn').addEventListener('click', function () {
+    page++;
+    var tb = document.getElementById('rows');
+    tb.innerHTML = '<tr><td>검색결과' + page + 'A</td><td class="tel">010-7000-1111</td><td>2026-11-28</td></tr>' +
+                   '<tr><td>검색결과' + page + 'B</td><td class="tel">010-7000-2222</td><td>2026-11-28</td></tr>';
+    log('표 전체 다시 그리기: 페이지 ' + page);
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', function () {
+    location.reload();
+  });
+
+  // 유저스크립트를 실제 파일에서 읽어 페이지에 주입한다 (Tampermonkey 주입과 같은 실행).
+  fetch('momu-call.user.js').then(function (r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.text();
+  }).then(function (src) {
+    log('유저스크립트 다운로드 완료: ' + src.length + ' bytes');
+    (new Function(src))();
+    log('유저스크립트 실행 완료');
+  }).catch(function (e) {
+    log('오류: ' + e.message);
+  });
+
+  window.__stats = function () {
+    var spans = document.querySelectorAll('[data-pcall]');
+    var bar = document.getElementById('pcallbar');
+    var tel = bar ? bar.querySelector('a[href^="tel:"]') : null;
+    var sms = bar ? bar.querySelector('a[href^="sms:"]') : null;
+    var plain = [];
+    document.querySelectorAll('td.tel').forEach(function (td) {
+      if (!td.querySelector('[data-pcall]')) plain.push(td.textContent.trim());
+    });
+    return {
+      spanCount: spans.length,
+      values: Array.prototype.map.call(spans, function (s) { return s.getAttribute('data-pcall') + ' | ' + s.textContent; }),
+      bar: !!bar,
+      barText: bar ? bar.textContent : null,
+      tel: tel ? tel.getAttribute('href') : null,
+      sms: sms ? sms.getAttribute('href') : null,
+      unconvertedCells: plain,
+      log: window.__testLog.slice(-8)
+    };
+  };
+</script>
+</body>
+</html>
