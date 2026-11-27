@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1565c0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="복사한 전화번호를 붙여넣지 않고 한 번에 전화·문자로 연결합니다.">
+<title>원터치 전화·문자</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%231565c0'/%3E%3Cpath d='M30 22c3-3 8-2 10 2l7 12c1 3 0 5-2 7l-5 5c5 10 12 17 22 22l5-5c2-2 5-3 8-2l12 7c4 2 5 7 2 10l-6 6c-3 3-8 5-12 3C48 79 21 52 17 32c-1-4 1-8 4-11z' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,Roboto,sans-serif;
+    background:#eef1f6;color:#16202a;
+    -webkit-text-size-adjust:100%;
+    padding:0 0 calc(28px + env(safe-area-inset-bottom,0px));
+  }
+  .wrap{max-width:520px;margin:0 auto;padding:20px 14px 10px}
+  header{padding:4px 2px 0}
+  h1{font-size:21px;line-height:1.25;margin:0 0 5px;letter-spacing:-.3px}
+  .sub{font-size:13px;line-height:1.5;color:#69737f;margin:0}
+  .paste{
+    display:block;width:100%;border:0;border-radius:18px;
+    background:linear-gradient(135deg,#2196f3,#1565c0);color:#fff;
+    font-size:19px;font-weight:800;font-family:inherit;
+    padding:21px 16px;margin:18px 0 6px;
+    box-shadow:0 8px 22px rgba(21,101,192,.28);
+  }
+  .paste:active{transform:translateY(1px);box-shadow:0 4px 12px rgba(21,101,192,.28)}
+  .status{font-size:13px;line-height:1.5;color:#69737f;min-height:20px;margin:8px 3px 14px}
+  .status.warn{color:#b3541e}
+  .status.ok{color:#1b5e20}
+  #results{margin:0 0 12px}
+  .card{background:#fff;border-radius:16px;padding:16px;margin-bottom:10px;box-shadow:0 2px 10px rgba(22,32,42,.07)}
+  .num{font-size:26px;font-weight:800;letter-spacing:.4px;margin-bottom:13px;word-break:break-all;text-align:center}
+  .card.single .num{font-size:31px;margin:6px 0 18px}
+  .actions{display:flex;gap:8px}
+  .btn{
+    flex:1;display:block;text-align:center;padding:15px 4px;border-radius:13px;
+    font-size:16px;font-weight:700;text-decoration:none;color:#fff;line-height:1.2;
+  }
+  .btn:active{opacity:.85}
+  .call{background:#1565c0}
+  .sms{background:#2e7d32}
+  .empty{background:#fff;border-radius:16px;padding:22px 18px;text-align:center;color:#7b8590;font-size:14px;line-height:1.6;box-shadow:0 2px 10px rgba(22,32,42,.06)}
+  details{background:#fff;border-radius:16px;margin-bottom:10px;box-shadow:0 2px 10px rgba(22,32,42,.07);overflow:hidden}
+  summary{list-style:none;cursor:pointer;padding:16px;font-size:15px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  summary::-webkit-details-marker{display:none}
+  summary .chev{color:#a7b0ba;font-size:13px;transition:transform .18s}
+  details[open] summary .chev{transform:rotate(180deg)}
+  .inner{padding:0 16px 16px}
+  .hint{font-size:12.5px;line-height:1.55;color:#7b8590;margin:0 0 10px}
+  textarea{
+    width:100%;border:1px solid #dbe1e8;border-radius:12px;padding:12px;
+    font-size:16px;font-family:inherit;line-height:1.5;background:#fbfcfe;color:#16202a;
+    resize:vertical;min-height:88px;display:block;
+  }
+  textarea:focus{outline:2px solid #90caf9;border-color:#90caf9}
+  .row{display:flex;align-items:center;gap:10px;margin-top:9px}
+  .mini{font-size:12.5px;color:#2e7d32;font-weight:700}
+  h2{font-size:16px;margin:22px 2px 8px;letter-spacing:-.2px}
+  .sec{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(22,32,42,.07);margin-bottom:12px}
+  .sec p{margin:0 0 10px}
+  ol.steps{margin:0 0 14px;padding-left:20px;font-size:13.5px;line-height:1.65;color:#4a5560}
+  ol.steps li{margin-bottom:5px}
+  ol.steps b{color:#16202a}
+  .copy{
+    display:block;width:100%;border:0;border-radius:13px;background:#16202a;color:#fff;
+    font-size:16px;font-weight:700;font-family:inherit;padding:15px;
+  }
+  .copy:active{opacity:.88}
+  .copy.done{background:#2e7d32}
+  .code{
+    margin-top:10px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:11px;line-height:1.5;min-height:96px;height:96px;color:#4a5560;background:#f5f7fa;
+    border:1px solid #e3e8ee;resize:vertical;word-break:break-all;
+  }
+  .foot{font-size:12px;line-height:1.6;color:#8b949e;text-align:center;padding:14px 6px 6px}
+  .foot a{color:#1565c0;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>📱 원터치 전화 · 문자</h1>
+    <p class="sub">관리자 페이지에서 번호만 복사해 오세요. 붙여넣지 않아도 전화·문자 버튼이 바로 나옵니다.</p>
+  </header>
+
+  <button class="paste" id="pasteBtn" type="button">📋 복사한 번호 불러오기</button>
+  <div class="status" id="status">번호를 복사한 뒤 위 버튼을 누르면 바로 불러옵니다.</div>
+
+  <div id="results">
+    <div class="empty">아직 번호가 없습니다.<br>번호를 복사하고 <b>📋 복사한 번호 불러오기</b>를 눌러 주세요.</div>
+  </div>
+
+  <details id="msgDetails">
+    <summary>💬 자주 쓰는 문자 문구 <span class="chev">▾</span></summary>
+    <div class="inner">
+      <p class="hint">여기에 쓴 문구는 이 폰에 저장되고, <b>문자 보내기</b>를 누를 때 문자 내용으로 함께 넘어갑니다. 비워 두면 빈 문자로 열립니다.</p>
+      <textarea id="msgText" placeholder="예) 안녕하세요, 스터디카페 자리 문의드립니다." maxlength="500"></textarea>
+      <div class="row"><span class="mini" id="msgState"></span></div>
+    </div>
+  </details>
+
+  <details id="manualDetails">
+    <summary>✍️ 직접 입력 · 붙여넣기 <span class="chev">▾</span></summary>
+    <div class="inner">
+      <p class="hint">클립보드 읽기가 막힌 브라우저에서는 여기에 붙여넣으세요. 번호를 자동으로 찾아냅니다. (긴 글도 됩니다)</p>
+      <textarea id="manualText" placeholder="010-8582-6334 처럼 번호가 들어간 글을 붙여넣기"></textarea>
+    </div>
+  </details>
+
+  <h2>🔖 크롬 북마클릿 (다른 폰에서도 사용)</h2>
+  <div class="sec">
+    <p class="hint">관리자 페이지에서 드래그·복사 없이, 화면의 번호를 바로 <b>터치 링크</b>로 바꿔 줍니다. 아래 코드를 한 번 복사해 두면 어느 페이지에서나 씁니다.</p>
+    <ol class="steps">
+      <li>아래 <b>북마클릿 코드 복사</b> 버튼을 누릅니다.</li>
+      <li>크롬에서 아무 페이지나 <b>북마크(☆)</b>로 저장한 뒤, <b>북마크 관리</b>에서 그 북마크를 길게 눌러 <b>수정</b>합니다.</li>
+      <li>주소(URL) 칸을 전부 지우고 복사한 코드를 <b>붙여넣고 저장</b>합니다. 이름은 ‘원터치’로.</li>
+      <li>관리자 페이지를 연 뒤 북마크 목록에서 <b>원터치</b>를 누르면 번호에 파란 밑줄이 생깁니다. 그 번호를 터치하면 화면 아래에 <b>📞 전화 걸기 · 💬 문자 보내기</b> 바가 뜹니다.</li>
+    </ol>
+    <button class="copy" id="copyBm" type="button">📎 북마클릿 코드 복사</button>
+    <textarea class="code" id="bmCode" readonly spellcheck="false">javascript:(function () { var ATTR = 'data-pcall'; var RE = /\+?82[-\s.]?10[-\s.]?\d{3,4}[-\s.]?\d{4}|01[016789][-\s.]?\d{3,4}[-\s.]?\d{4}|02[-\s.]?\d{3,4}[-\s.]?\d{4}|0(?:3[1-3]|4[1-4]|5[1-5]|6[1-4])[-\s.]?\d{3,4}[-\s.]?\d{4}|0(?:70|60|50\d)[-\s.]?\d{3,4}[-\s.]?\d{4}|1[5-8]\d{2}[-\s.]?\d{4}/g; var SKIP = {SCRIPT: 1, STYLE: 1, TEXTAREA: 1, INPUT: 1, SELECT: 1, OPTION: 1, NOSCRIPT: 1, A: 1, BUTTON: 1, SVG: 1, CODE: 1}; function digits(s) { var d = s.replace(/[^0-9]/g, ''); if (/^82(?:10|2)/.test(d)) d = '0' + d.slice(2); return d; } function fmt(d) { if (/^01[016789]/.test(d) &amp;&amp; (d.length === 10 || d.length === 11)) { return d.length === 11 ? d.slice(0, 3) + '-' + d.slice(3, 7) + '-' + d.slice(7) : d.slice(0, 3) + '-' + d.slice(3, 6) + '-' + d.slice(6); } if (d.slice(0, 2) === '02' &amp;&amp; (d.length === 9 || d.length === 10)) { return d.length === 10 ? '02-' + d.slice(2, 6) + '-' + d.slice(6) : '02-' + d.slice(2, 5) + '-' + d.slice(5); } if (/^1[5-8][0-9]{6}$/.test(d)) return d.slice(0, 4) + '-' + d.slice(4); if (d.length &gt;= 10) return d.slice(0, d.length - 7) + '-' + d.slice(d.length - 7, d.length - 4) + '-' + d.slice(d.length - 4); return d; } function toast(msg) { var t = document.getElementById('pcalltoast'); if (t &amp;&amp; t.parentNode) t.parentNode.removeChild(t); t = document.createElement('div'); t.id = 'pcalltoast'; t.textContent = msg; t.style.cssText = 'position:fixed;left:12px;right:12px;top:14px;z-index:2147483647;text-align:center;background:rgb(17,17,17);color:rgb(255,255,255);padding:10px 16px;border-radius:20px;font-size:14px;line-height:1.4;font-family:-apple-system,BlinkMacSystemFont,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.3);max-width:90vw;text-align:center;'; document.body.appendChild(t); setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 2600); } function showBar(d) { var old = document.getElementById('pcallbar'); if (old &amp;&amp; old.parentNode) old.parentNode.removeChild(old); var el = document.createElement('div'); el.id = 'pcallbar'; el.setAttribute('data-pcall-bar', '1'); el.style.cssText = 'position:fixed;left:10px;right:10px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:2147483647;background:rgb(255,255,255);border:1px solid rgb(226,230,236);border-radius:16px;box-shadow:0 10px 34px rgba(0,0,0,.28);padding:12px 14px 14px;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:rgb(17,17,17);'; el.innerHTML = '&lt;div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;"&gt;' + '&lt;div style="font-size:20px;font-weight:800;letter-spacing:.4px;"&gt;' + fmt(d) + '&lt;/div&gt;' + '&lt;div data-pcall-close="1" style="font-size:20px;line-height:1;padding:4px 10px;color:rgb(154,163,173);cursor:pointer;-webkit-tap-highlight-color:transparent;"&gt;\u2715&lt;/div&gt;' + '&lt;/div&gt;' + '&lt;div style="display:flex;gap:8px;"&gt;' + '&lt;a href="tel:' + d + '" style="flex:1;text-align:center;padding:15px 0;border-radius:12px;background:rgb(21,101,192);color:rgb(255,255,255);font-size:16px;font-weight:700;text-decoration:none;-webkit-tap-highlight-color:transparent;"&gt;\ud83d\udce2 전화 걸기&lt;/a&gt;' + '&lt;a href="sms:' + d + '" style="flex:1;text-align:center;padding:15px 0;border-radius:12px;background:rgb(46,125,50);color:rgb(255,255,255);font-size:16px;font-weight:700;text-decoration:none;-webkit-tap-highlight-color:transparent;"&gt;\ud83d\udcac 문자 보내기&lt;/a&gt;' + '&lt;/div&gt;'; document.body.appendChild(el); } function convert() { if (!document.body) return 0; var walker = document.createTreeWalker(document.body, 4, { acceptNode: function (n) { var p = n.parentNode; if (!p || SKIP[p.nodeName]) return 2; if (p.closest &amp;&amp; p.closest('[' + ATTR + '],[data-pcall-bar]')) return 2; var v = n.nodeValue; if (!v || v.length &lt; 7) return 2; RE.lastIndex = 0; return RE.test(v) ? 1 : 2; } }, false); var nodes = [], n, i, m, s, e, last, node, text, frag, sp, count = 0; while ((n = walker.nextNode())) nodes.push(n); for (i = 0; i &lt; nodes.length; i++) { node = nodes[i]; text = node.nodeValue; frag = document.createDocumentFragment(); last = 0; RE.lastIndex = 0; while ((m = RE.exec(text))) { s = m.index; e = s + m[0].length; if (s &gt; 0 &amp;&amp; /[0-9]/.test(text.charAt(s - 1))) continue; if (e &lt; text.length &amp;&amp; /[0-9]/.test(text.charAt(e))) continue; var d = digits(m[0]); if (d.length &lt; 8) continue; if (s &gt; last) frag.appendChild(document.createTextNode(text.slice(last, s))); sp = document.createElement('span'); sp.setAttribute(ATTR, d); sp.textContent = m[0]; sp.style.cssText = 'color:rgb(21,101,192);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:2px;cursor:pointer;-webkit-tap-highlight-color:rgba(21,101,192,.15);white-space:nowrap;font-size:inherit;font-family:inherit;'; frag.appendChild(sp); last = e; count++; } if (last &gt; 0) { if (last &lt; text.length) frag.appendChild(document.createTextNode(text.slice(last))); if (node.parentNode) node.parentNode.replaceChild(frag, node); } } return count; } if (!window.__pcallLoaded) { window.__pcallLoaded = 1; document.addEventListener('click', function (e) { var t = e.target; if (!t || !t.closest) return; var close = t.closest('[data-pcall-close]'); if (close) { var bar = document.getElementById('pcallbar'); if (bar &amp;&amp; bar.contains(close) &amp;&amp; bar.parentNode) bar.parentNode.removeChild(bar); e.preventDefault(); e.stopPropagation(); return; } var sp = t.closest('[' + ATTR + ']'); if (sp) { showBar(sp.getAttribute(ATTR)); e.preventDefault(); e.stopPropagation(); } }, true); } var found = convert(); if (found &gt; 0) toast('전화번호 ' + found + '개를 터치할 수 있게 바꿨어요'); else toast('이 화면에서 바꿀 전화번호를 찾지 못했어요'); })();</textarea>
+  </div>
+
+  <p class="foot">홈 화면에 추가하면 앱처럼 열립니다.<br>크롬 ⋮ → <b>홈 화면에 추가</b></p>
+</div>
+
+<script>
+(function () {
+  var ATTR = 'data-pcall';
+  var RE = /\+?82[-\s.]?10[-\s.]?\d{3,4}[-\s.]?\d{4}|01[016789][-\s.]?\d{3,4}[-\s.]?\d{4}|02[-\s.]?\d{3,4}[-\s.]?\d{4}|0(?:3[1-3]|4[1-4]|5[1-5]|6[1-4])[-\s.]?\d{3,4}[-\s.]?\d{4}|0(?:70|60|50\d)[-\s.]?\d{3,4}[-\s.]?\d{4}|1[5-8]\d{2}[-\s.]?\d{4}/g;
+
+  var els = {
+    btn: document.getElementById('pasteBtn'),
+    status: document.getElementById('status'),
+    results: document.getElementById('results'),
+    msg: document.getElementById('msgText'),
+    msgState: document.getElementById('msgState'),
+    manual: document.getElementById('manualText'),
+    manualBox: document.getElementById('manualDetails'),
+    msgBox: document.getElementById('msgDetails'),
+    bm: document.getElementById('bmCode'),
+    copyBm: document.getElementById('copyBm')
+  };
+
+  function digits(s) {
+    var d = String(s).replace(/[^0-9]/g, '');
+    if (/^82(?:10|2)/.test(d)) d = '0' + d.slice(2);
+    return d;
+  }
+
+  function fmt(d) {
+    if (/^01[016789]/.test(d) && (d.length === 10 || d.length === 11)) {
+      return d.length === 11 ? d.slice(0, 3) + '-' + d.slice(3, 7) + '-' + d.slice(7) : d.slice(0, 3) + '-' + d.slice(3, 6) + '-' + d.slice(6);
+    }
+    if (d.slice(0, 2) === '02' && (d.length === 9 || d.length === 10)) {
+      return d.length === 10 ? '02-' + d.slice(2, 6) + '-' + d.slice(6) : '02-' + d.slice(2, 5) + '-' + d.slice(5);
+    }
+    if (/^1[5-8][0-9]{6}$/.test(d)) return d.slice(0, 4) + '-' + d.slice(4);
+    if (d.length >= 10) return d.slice(0, d.length - 7) + '-' + d.slice(d.length - 7, d.length - 4) + '-' + d.slice(d.length - 4);
+    return d;
+  }
+
+  function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
+  function extract(text) {
+    var out = [], seen = {}, m, s, e, d;
+    if (!text) return out;
+    RE.lastIndex = 0;
+    while ((m = RE.exec(text))) {
+      s = m.index;
+      e = s + m[0].length;
+      if (s > 0 && /[0-9]/.test(text.charAt(s - 1))) continue;
+      if (e < text.length && /[0-9]/.test(text.charAt(e))) continue;
+      d = digits(m[0]);
+      if (d.length < 8 || seen[d]) continue;
+      seen[d] = 1;
+      out.push(d);
+    }
+    return out;
+  }
+
+  function smsHref(d) {
+    var body = els.msg.value.trim();
+    if (!body) return 'sms:' + d;
+    return 'sms:' + d + (isIOS() ? '&body=' : '?body=') + encodeURIComponent(body);
+  }
+
+  function refreshSms() {
+    var nodes = els.results.querySelectorAll('a.sms');
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].setAttribute('href', smsHref(nodes[i].getAttribute('data-d')));
+    }
+  }
+
+  function card(d, single) {
+    var wrap = document.createElement('div');
+    wrap.className = 'card' + (single ? ' single' : '');
+    var num = document.createElement('div');
+    num.className = 'num';
+    num.textContent = fmt(d);
+    var acts = document.createElement('div');
+    acts.className = 'actions';
+    var call = document.createElement('a');
+    call.className = 'btn call';
+    call.setAttribute('href', 'tel:' + d);
+    call.textContent = '📞 전화 걸기';
+    var sms = document.createElement('a');
+    sms.className = 'btn sms';
+    sms.setAttribute('data-d', d);
+    sms.setAttribute('href', smsHref(d));
+    sms.textContent = '💬 문자 보내기';
+    acts.appendChild(call);
+    acts.appendChild(sms);
+    wrap.appendChild(num);
+    wrap.appendChild(acts);
+    return wrap;
+  }
+
+  function render(list, source) {
+    els.results.innerHTML = '';
+    els.status.className = 'status ok';
+    if (!list.length) {
+      els.status.className = 'status';
+      els.status.textContent = '번호를 찾지 못했어요.';
+      var em = document.createElement('div');
+      em.className = 'empty';
+      em.innerHTML = '전화번호를 찾지 못했습니다.<br>번호가 들어간 글을 <b>직접 입력</b>에 붙여넣어 보세요.';
+      els.results.appendChild(em);
+      return;
+    }
+    els.status.textContent = source + '에서 번호 ' + list.length + '개를 찾았어요. 전화나 문자를 누르세요.';
+    var single = list.length === 1;
+    for (var i = 0; i < list.length; i++) {
+      els.results.appendChild(card(list[i], single));
+    }
+  }
+
+  function fail(msg) {
+    els.status.className = 'status warn';
+    els.status.textContent = msg;
+    els.manualBox.open = true;
+  }
+
+  function readClipboard(silent) {
+    if (!navigator.clipboard || !navigator.clipboard.readText) {
+      if (silent) { els.status.textContent = '번호를 복사한 뒤 위 버튼을 누르면 바로 불러옵니다.'; return; }
+      fail('이 브라우저는 클립보드 읽기를 지원하지 않아요. 아래 “직접 입력”에 붙여넣어 주세요.');
+      return;
+    }
+    navigator.clipboard.readText().then(function (txt) {
+      var list = extract(txt || '');
+      if (!list.length) {
+        if (silent) { els.status.textContent = '번호를 복사한 뒤 위 버튼을 누르면 바로 불러옵니다.'; return; }
+        fail((txt || '').trim() ? '클립보드에서 전화번호를 찾지 못했어요. 아래 “직접 입력”에 붙여넣어 주세요.' : '클립보드가 비어 있어요. 번호를 복사한 뒤 다시 눌러 주세요.');
+        return;
+      }
+      render(list, '클립보드');
+    }).catch(function (err) {
+      var name = (err && err.name) || '';
+      if (silent) { els.status.textContent = '번호를 복사한 뒤 위 버튼을 누르면 바로 불러옵니다.'; return; }
+      fail('브라우저가 클립보드 읽기를 막았어요' + (name === 'NotAllowedError' ? ' (권한을 허용하면 버튼 한 번으로 됩니다)' : '') + '. 아래 “직접 입력”에 붙여넣어 주세요.');
+    });
+  }
+
+  var autoTried = false;
+  function autoTry() {
+    if (autoTried) return;
+    autoTried = true;
+    readClipboard(true);
+  }
+
+  els.btn.addEventListener('click', function () {
+    els.status.className = 'status';
+    els.status.textContent = '클립보드를 확인하는 중…';
+    readClipboard(false);
+  });
+
+  els.manual.addEventListener('input', function () {
+    var list = extract(els.manual.value);
+    if (!els.manual.value.trim()) {
+      els.status.className = 'status';
+      els.status.textContent = '번호를 복사한 뒤 위 버튼을 누르면 바로 불러옵니다.';
+      els.results.innerHTML = '';
+      return;
+    }
+    render(list, '입력한 글');
+  });
+
+  document.addEventListener('paste', function (e) {
+    if (e.target === els.manual) return;
+    var cd = e.clipboardData || window.clipboardData;
+    if (!cd) return;
+    var txt = cd.getData('text') || '';
+    var list = extract(txt);
+    if (list.length) {
+      render(list, '붙여넣은 글');
+      e.preventDefault();
+    }
+  });
+
+  els.msg.addEventListener('input', function () {
+    refreshSms();
+    try { localStorage.setItem('pcall.msg', els.msg.value); } catch (e) {}
+    els.msgState.textContent = els.msg.value.trim() ? '저장됨 · 문자에 이 내용이 들어갑니다' : '';
+  });
+
+  try {
+    var saved = localStorage.getItem('pcall.msg');
+    if (saved) { els.msg.value = saved; els.msgState.textContent = '저장됨 · 문자에 이 내용이 들어갑니다'; }
+  } catch (e) {}
+
+  function copyText(t) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(t).then(function () { return true; }, function () { return legacyCopy(); });
+    }
+    return Promise.resolve(legacyCopy());
+  }
+
+  function legacyCopy() {
+    try {
+      els.bm.focus();
+      els.bm.select();
+      els.bm.setSelectionRange(0, els.bm.value.length);
+      return document.execCommand('copy');
+    } catch (e) { return false; }
+  }
+
+  els.copyBm.addEventListener('click', function () {
+    copyText(els.bm.value).then(function (ok) {
+      if (ok) {
+        els.copyBm.textContent = '✅ 복사됐어요';
+        els.copyBm.classList.add('done');
+        setTimeout(function () {
+          els.copyBm.textContent = '📎 북마클릿 코드 복사';
+          els.copyBm.classList.remove('done');
+        }, 2000);
+      } else {
+        els.bm.focus();
+        els.bm.select();
+        els.copyBm.textContent = '코드를 길게 눌러 복사해 주세요';
+        setTimeout(function () { els.copyBm.textContent = '📎 북마클릿 코드 복사'; }, 2600);
+      }
+    });
+  });
+
+  window.addEventListener('load', function () { setTimeout(autoTry, 400); });
+  window.addEventListener('focus', function () { setTimeout(autoTry, 150); });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) autoTry(); });
+})();
+</script>
+</body>
+</html>
