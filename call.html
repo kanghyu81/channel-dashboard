@@ -60,8 +60,74 @@
     resize:vertical;min-height:88px;display:block;
   }
   textarea:focus{outline:2px solid #90caf9;border-color:#90caf9}
-  .row{display:flex;align-items:center;gap:10px;margin-top:9px}
-  .mini{font-size:12.5px;color:#2e7d32;font-weight:700}
+  .sumRight{display:flex;align-items:center;gap:8px;margin-left:auto}
+  .cnt{font-size:12px;font-weight:800;color:#1565c0;background:#e8f1fb;border-radius:999px;padding:3px 9px;white-space:nowrap}
+  .cnt.full{color:#b3541e;background:#fdeee4}
+  .tplAdd{display:flex;flex-direction:column;gap:8px}
+  #msgInput{
+    width:100%;border:1px solid #dbe1e8;border-radius:12px;padding:11px 12px;
+    font-size:16px;font-family:inherit;line-height:1.5;background:#fbfcfe;color:#16202a;
+    resize:vertical;min-height:66px;display:block;
+  }
+  #msgInput:focus{outline:2px solid #90caf9;border-color:#90caf9}
+  .tplBtns{display:flex;gap:8px}
+  .tplBtns button{
+    border:0;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;
+    padding:12px 16px;-webkit-tap-highlight-color:transparent;
+  }
+  .tplBtns button:active{opacity:.85}
+  #msgAdd{flex:1;background:#1565c0;color:#fff;font-size:16px;padding:13px 16px}
+  #msgCancelEdit{background:#eef1f6;color:#4a5560}
+  #msgCancelEdit[hidden]{display:none}
+  .tplNote{font-size:12.5px;line-height:1.5;color:#2e7d32;min-height:18px;margin:8px 2px 2px}
+  .tplNote.warn{color:#b3541e}
+  .tplList{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .tplItem{display:flex;align-items:flex-start;gap:8px;background:#f6f8fb;border:1px solid #e7ecf2;border-radius:13px;padding:11px 10px 11px 12px}
+  .tplItem.editing{border-color:#90caf9;background:#f2f8ff}
+  .tplBody{flex:1;min-width:0}
+  .tplText{font-size:14px;line-height:1.45;color:#16202a;white-space:pre-wrap;word-break:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .tplItem.open .tplText{-webkit-line-clamp:unset;display:block;overflow:visible}
+  .tplTools{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+  .tplTools button{
+    border:0;border-radius:9px;font-family:inherit;font-size:12.5px;font-weight:700;
+    padding:7px 9px;background:#fff;color:#1565c0;box-shadow:0 1px 3px rgba(22,32,42,.08);
+    -webkit-tap-highlight-color:transparent;white-space:nowrap;
+  }
+  .tplTools button.del{color:#c62828}
+  .tplEmpty{font-size:13px;line-height:1.55;color:#8b949e;background:#f8fafc;border-radius:12px;padding:13px;text-align:center}
+  .sheetWrap{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;justify-content:flex-end}
+  .sheetWrap[hidden]{display:none}
+  .sheetBg{position:absolute;inset:0;background:rgba(16,24,32,.45)}
+  .sheet{
+    position:relative;background:#fff;border-radius:20px 20px 0 0;max-height:82vh;display:flex;flex-direction:column;
+    box-shadow:0 -8px 30px rgba(0,0,0,.2);padding:12px 14px calc(14px + env(safe-area-inset-bottom,0px));
+    animation:sheetUp .2s ease-out;
+  }
+  @keyframes sheetUp{from{transform:translateY(20px);opacity:.5}to{transform:translateY(0);opacity:1}}
+  @media (min-width:600px){
+    .sheet{max-width:520px;margin:0 auto;border-radius:20px 20px 0 0}
+  }
+  .sheetTop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:2px 2px 10px}
+  .sheetTitle{font-size:12.5px;font-weight:700;color:#69737f;margin-bottom:2px}
+  .sheetNum{font-size:20px;font-weight:800;letter-spacing:.3px;word-break:break-all}
+  .sheetX{
+    border:0;background:#f0f3f7;color:#69737f;font-size:15px;line-height:1;width:34px;height:34px;border-radius:50%;
+    font-family:inherit;-webkit-tap-highlight-color:transparent;flex-shrink:0;
+  }
+  .sheetX:active{background:#e3e8ee}
+  .sheetList{overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:8px;padding:2px 0 4px}
+  .opt{display:flex;align-items:stretch;border-radius:14px;background:#f6f8fb;border:1px solid #e7ecf2;overflow:hidden}
+  .opt.blank{background:#fff;border:1.5px dashed #c3d2e4}
+  .optMain{flex:1;min-width:0;display:block;padding:13px 14px;text-decoration:none;color:#16202a;-webkit-tap-highlight-color:rgba(21,101,192,.12)}
+  .opt.blank .optMain{color:#1565c0;font-weight:700;font-size:15.5px}
+  .optText{font-size:14.5px;line-height:1.45;white-space:pre-wrap;word-break:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .opt.open .optText{-webkit-line-clamp:unset;display:block;overflow:visible}
+  .optMore{
+    border:0;border-left:1px solid #e7ecf2;background:transparent;color:#69737f;
+    font-family:inherit;font-size:12px;font-weight:700;padding:0 11px;flex-shrink:0;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .optNote{font-size:11.5px;color:#8b949e;margin-top:5px}
   h2{font-size:16px;margin:22px 2px 8px;letter-spacing:-.2px}
   .sec{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(22,32,42,.07);margin-bottom:12px}
   .sec p{margin:0 0 10px}
@@ -98,13 +164,34 @@
   </div>
 
   <details id="msgDetails">
-    <summary>💬 자주 쓰는 문자 문구 <span class="chev">▾</span></summary>
+    <summary>💬 자주 쓰는 문자 문구 <span class="sumRight"><span class="cnt" id="msgCount">0/10</span><span class="chev">▾</span></span></summary>
     <div class="inner">
-      <p class="hint">여기에 쓴 문구는 이 폰에 저장되고, <b>문자 보내기</b>를 누를 때 문자 내용으로 함께 넘어갑니다. 비워 두면 빈 문자로 열립니다.</p>
-      <textarea id="msgText" placeholder="예) 안녕하세요, 스터디카페 자리 문의드립니다." maxlength="500"></textarea>
-      <div class="row"><span class="mini" id="msgState"></span></div>
+      <p class="hint">문구를 최대 <b>10개</b>까지 저장해 두고, <b>문자 보내기</b>를 누르면 그중에서 골라 바로 보냅니다. 저장한 문구는 이 폰에만 남습니다.</p>
+      <div class="tplAdd">
+        <textarea id="msgInput" placeholder="예) 안녕하세요, 문의드립니다." maxlength="500"></textarea>
+        <div class="tplBtns">
+          <button id="msgAdd" type="button">추가</button>
+          <button id="msgCancelEdit" type="button" hidden>수정 취소</button>
+        </div>
+      </div>
+      <div class="tplNote" id="msgNote"></div>
+      <div class="tplList" id="msgList"></div>
     </div>
   </details>
+
+  <div class="sheetWrap" id="sheet" hidden>
+    <div class="sheetBg" data-sheet-close="1"></div>
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="문자 문구 선택">
+      <div class="sheetTop">
+        <div>
+          <div class="sheetTitle">보낼 문구를 고르세요</div>
+          <div class="sheetNum" id="sheetNum"></div>
+        </div>
+        <button class="sheetX" id="sheetClose" type="button" aria-label="닫기">✕</button>
+      </div>
+      <div class="sheetList" id="sheetList"></div>
+    </div>
+  </div>
 
   <details id="manualDetails">
     <summary>✍️ 직접 입력 · 붙여넣기 <span class="chev">▾</span></summary>
@@ -139,8 +226,16 @@
     btn: document.getElementById('pasteBtn'),
     status: document.getElementById('status'),
     results: document.getElementById('results'),
-    msg: document.getElementById('msgText'),
-    msgState: document.getElementById('msgState'),
+    msg: document.getElementById('msgInput'),
+    msgAdd: document.getElementById('msgAdd'),
+    msgCancel: document.getElementById('msgCancelEdit'),
+    msgList: document.getElementById('msgList'),
+    msgCount: document.getElementById('msgCount'),
+    msgNote: document.getElementById('msgNote'),
+    sheet: document.getElementById('sheet'),
+    sheetNum: document.getElementById('sheetNum'),
+    sheetList: document.getElementById('sheetList'),
+    sheetClose: document.getElementById('sheetClose'),
     manual: document.getElementById('manualText'),
     manualBox: document.getElementById('manualDetails'),
     msgBox: document.getElementById('msgDetails'),
@@ -188,17 +283,202 @@
     return out;
   }
 
-  function smsHref(d) {
-    var body = els.msg.value.trim();
-    if (!body) return 'sms:' + d;
-    return 'sms:' + d + (isIOS() ? '&body=' : '?body=') + encodeURIComponent(body);
+  var MAX_MSG = 10;
+  var MSG_KEY = 'pcall.msgs';
+  var OLD_MSG_KEY = 'pcall.msg';
+  var msgs = [];
+  var editIdx = -1;
+
+  function isArray(v) {
+    return Object.prototype.toString.call(v) === '[object Array]';
   }
 
-  function refreshSms() {
-    var nodes = els.results.querySelectorAll('a.sms');
-    for (var i = 0; i < nodes.length; i++) {
-      nodes[i].setAttribute('href', smsHref(nodes[i].getAttribute('data-d')));
+  function saveMsgs() {
+    try {
+      localStorage.setItem(MSG_KEY, JSON.stringify(msgs));
+      localStorage.removeItem(OLD_MSG_KEY);
+    } catch (e) {}
+  }
+
+  function loadMsgs() {
+    try {
+      var raw = localStorage.getItem(MSG_KEY);
+      if (raw !== null) {
+        var arr = JSON.parse(raw);
+        if (isArray(arr)) {
+          for (var i = 0; i < arr.length && msgs.length < MAX_MSG; i++) {
+            if (typeof arr[i] === 'string' && arr[i].trim()) msgs.push(arr[i].trim().slice(0, 500));
+          }
+        }
+        return;
+      }
+      var old = localStorage.getItem(OLD_MSG_KEY);
+      if (old && old.trim()) {
+        msgs = [old.trim().slice(0, 500)];
+        saveMsgs();
+      }
+    } catch (e) { msgs = []; }
+  }
+
+  function note(t, warn) {
+    els.msgNote.textContent = t || '';
+    els.msgNote.className = 'tplNote' + (warn ? ' warn' : '');
+  }
+
+  function resetEdit() {
+    editIdx = -1;
+    els.msg.value = '';
+    els.msgAdd.textContent = '추가';
+    els.msgCancel.hidden = true;
+  }
+
+  function renderMsgs() {
+    els.msgCount.textContent = msgs.length + '/' + MAX_MSG;
+    els.msgCount.className = 'cnt' + (msgs.length >= MAX_MSG ? ' full' : '');
+    els.msgList.innerHTML = '';
+    if (!msgs.length) {
+      var em = document.createElement('div');
+      em.className = 'tplEmpty';
+      em.textContent = '저장된 문구가 없습니다. 위에 쓰고 [추가]를 누르면 여기에 쌓입니다.';
+      els.msgList.appendChild(em);
+      return;
     }
+    for (var i = 0; i < msgs.length; i++) {
+      (function (idx) {
+        var row = document.createElement('div');
+        row.className = 'tplItem' + (idx === editIdx ? ' editing' : '');
+        var body = document.createElement('div');
+        body.className = 'tplBody';
+        var tx = document.createElement('div');
+        tx.className = 'tplText';
+        tx.textContent = msgs[idx];
+        tx.addEventListener('click', function () { row.classList.toggle('open'); });
+        body.appendChild(tx);
+        var tools = document.createElement('div');
+        tools.className = 'tplTools';
+        var ed = document.createElement('button');
+        ed.type = 'button';
+        ed.textContent = '수정';
+        ed.addEventListener('click', function () { startEdit(idx); });
+        var del = document.createElement('button');
+        del.type = 'button';
+        del.className = 'del';
+        del.textContent = '삭제';
+        del.addEventListener('click', function () { removeMsg(idx); });
+        tools.appendChild(ed);
+        tools.appendChild(del);
+        row.appendChild(body);
+        row.appendChild(tools);
+        els.msgList.appendChild(row);
+      })(i);
+    }
+  }
+
+  function startEdit(i) {
+    editIdx = i;
+    els.msg.value = msgs[i];
+    els.msgAdd.textContent = '수정 저장';
+    els.msgCancel.hidden = false;
+    if (!els.msgBox.open) els.msgBox.open = true;
+    renderMsgs();
+    note('수정 중 · 고친 뒤 [수정 저장]을 누르세요.');
+    try { els.msg.focus(); } catch (e) {}
+  }
+
+  function submitMsg() {
+    var t = els.msg.value.trim();
+    if (!t) {
+      note('보낼 문구를 먼저 적어 주세요.', true);
+      try { els.msg.focus(); } catch (e) {}
+      return;
+    }
+    if (editIdx >= 0 && editIdx < msgs.length) {
+      msgs[editIdx] = t;
+      resetEdit();
+      saveMsgs();
+      renderMsgs();
+      note('문구를 고쳤습니다. (' + msgs.length + '/' + MAX_MSG + ')');
+      return;
+    }
+    if (msgs.length >= MAX_MSG) {
+      note('문구는 최대 ' + MAX_MSG + '개까지 저장할 수 있어요. 하나 지우고 다시 추가해 주세요.', true);
+      return;
+    }
+    msgs.push(t);
+    saveMsgs();
+    els.msg.value = '';
+    renderMsgs();
+    note('문구를 저장했습니다. (' + msgs.length + '/' + MAX_MSG + ')');
+  }
+
+  function removeMsg(i) {
+    var ok = true;
+    try {
+      ok = window.confirm('이 문구를 삭제할까요?\n\n' + msgs[i]);
+    } catch (e) {}
+    if (!ok) return;
+    msgs.splice(i, 1);
+    if (editIdx === i) resetEdit();
+    else if (editIdx > i) editIdx--;
+    saveMsgs();
+    renderMsgs();
+    note('문구를 삭제했습니다. (' + msgs.length + '/' + MAX_MSG + ')');
+  }
+
+  function msgHref(d, text) {
+    if (!text || !text.trim()) return 'sms:' + d;
+    return 'sms:' + d + (isIOS() ? '&body=' : '?body=') + encodeURIComponent(text);
+  }
+
+  function openSheet(d) {
+    els.sheetNum.textContent = fmt(d);
+    els.sheetList.innerHTML = '';
+
+    var blank = document.createElement('div');
+    blank.className = 'opt blank';
+    var ba = document.createElement('a');
+    ba.className = 'optMain';
+    ba.setAttribute('href', 'sms:' + d);
+    ba.textContent = '문구 없이 그냥 보내기';
+    blank.appendChild(ba);
+    els.sheetList.appendChild(blank);
+
+    for (var i = 0; i < msgs.length; i++) {
+      (function (text) {
+        var row = document.createElement('div');
+        row.className = 'opt';
+        var a = document.createElement('a');
+        a.className = 'optMain';
+        a.setAttribute('href', msgHref(d, text));
+        var span = document.createElement('span');
+        span.className = 'optText';
+        span.textContent = text;
+        a.appendChild(span);
+        row.appendChild(a);
+        if (text.length > 34) {
+          var more = document.createElement('button');
+          more.type = 'button';
+          more.className = 'optMore';
+          more.textContent = '전체';
+          more.addEventListener('click', function (e) {
+            e.preventDefault();
+            var open = row.classList.toggle('open');
+            more.textContent = open ? '접기' : '전체';
+          });
+          row.appendChild(more);
+        }
+        els.sheetList.appendChild(row);
+      })(msgs[i]);
+    }
+
+    els.sheet.hidden = false;
+    try { document.body.style.overflow = 'hidden'; } catch (e) {}
+  }
+
+  function closeSheet() {
+    if (els.sheet.hidden) return;
+    els.sheet.hidden = true;
+    try { document.body.style.overflow = ''; } catch (e) {}
   }
 
   function card(d, single) {
@@ -216,8 +496,13 @@
     var sms = document.createElement('a');
     sms.className = 'btn sms';
     sms.setAttribute('data-d', d);
-    sms.setAttribute('href', smsHref(d));
+    sms.setAttribute('href', 'sms:' + d);
     sms.textContent = '💬 문자 보내기';
+    sms.addEventListener('click', function (e) {
+      if (!msgs.length) return;
+      e.preventDefault();
+      openSheet(d);
+    });
     acts.appendChild(call);
     acts.appendChild(sms);
     wrap.appendChild(num);
@@ -307,16 +592,30 @@
     }
   });
 
-  els.msg.addEventListener('input', function () {
-    refreshSms();
-    try { localStorage.setItem('pcall.msg', els.msg.value); } catch (e) {}
-    els.msgState.textContent = els.msg.value.trim() ? '저장됨 · 문자에 이 내용이 들어갑니다' : '';
+  loadMsgs();
+  renderMsgs();
+
+  els.msgAdd.addEventListener('click', submitMsg);
+  els.msgCancel.addEventListener('click', function () {
+    resetEdit();
+    renderMsgs();
+    note('수정을 취소했습니다.');
+  });
+  els.msg.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      submitMsg();
+    }
   });
 
-  try {
-    var saved = localStorage.getItem('pcall.msg');
-    if (saved) { els.msg.value = saved; els.msgState.textContent = '저장됨 · 문자에 이 내용이 들어갑니다'; }
-  } catch (e) {}
+  els.sheetClose.addEventListener('click', closeSheet);
+  els.sheet.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t === els.sheet || (t && t.getAttribute && t.getAttribute('data-sheet-close') !== null)) closeSheet();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !els.sheet.hidden) closeSheet();
+  });
 
   function copyText(t) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -354,7 +653,11 @@
 
   window.addEventListener('load', function () { setTimeout(autoTry, 400); });
   window.addEventListener('focus', function () { setTimeout(autoTry, 150); });
-  document.addEventListener('visibilitychange', function () { if (!document.hidden) autoTry(); });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) closeSheet();
+    else autoTry();
+  });
+  window.addEventListener('pagehide', closeSheet);
 })();
 </script>
 </body>
