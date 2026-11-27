@@ -45,7 +45,7 @@
   document.getElementById('addBtn').addEventListener('click', function () {
     seq++;
     var tr = document.createElement('tr');
-    var num = '010-9000-' + String(1000 + seq).slice(1);
+    var num = '010-9000-' + (1000 + seq);
     tr.innerHTML = '<td>동적회원' + seq + '</td><td class="tel">' + num + '</td><td>2026-11-28</td>';
     document.getElementById('rows').appendChild(tr);
     log('행 추가: ' + num);
