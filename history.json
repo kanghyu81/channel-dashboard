@@ -15,6 +15,11 @@
   "tistory": {
    "name": "달구랩",
    "url": "https://dalgulab.tistory.com"
+  },
+  "instagram": {
+   "name": "Tiny Wow",
+   "handle": "@tinywow81",
+   "url": "https://www.instagram.com/tinywow81/"
   }
  },
  "snapshots": [
@@ -514,6 +519,125 @@
      "publishedAt": "2026-11-28T08:21:00+09:00",
      "category": "주식·증시"
     }
+   }
+  },
+  {
+   "at": "2026-11-28T22:35:00+09:00",
+   "source": "2026-11-28 밤 자동 갱신 (예약 작업 · 공개 페이지·인사이트·관리자 통계 확인값 · 인스타 첫 포함)",
+   "youtube": {
+    "subscribers": 42,
+    "videos": 27,
+    "totalViews": 20498,
+    "longform": {
+     "knut": 7,
+     "hachiko": 77,
+     "wojtek": 37,
+     "wildlife": 40,
+     "cuteAnimals": 29,
+     "sum": 190
+    },
+    "shorts": {
+     "top": 1700,
+     "over1000": 15,
+     "publicCount": 22,
+     "latest": {
+      "squirrel": 472,
+      "cats": 1100,
+      "lions": 1500,
+      "dogFollows": 1000,
+      "polarBear": 761,
+      "elephants": 1000,
+      "goldfish": 955,
+      "snowCat": 1100,
+      "dogsFood": 1000,
+      "hachiko": 331,
+      "penguins": 1200,
+      "dolphins": 772,
+      "oldDog": 1000,
+      "bearSoldier": 344,
+      "otters": 1100,
+      "fourBabyAnimals": 1100,
+      "hippoTortoise": 1700,
+      "farmAnimals": 1300,
+      "owls": 1100,
+      "sixBabyAnimals": 52,
+      "deer": 1200,
+      "bears": 1700
+     },
+     "sumApprox": 21787
+    }
+   },
+   "threads": {
+    "followers": 3,
+    "views30d": 14898,
+    "visitors30d": 11801,
+    "reactions30d": 76,
+    "netFollowers": 2,
+    "recentViews": "1.4만회",
+    "status": "게시 정상 (08:00·19:00·22:00 3회 모두 발행 · 22:00은 22:17 발행)",
+    "postsToday": {
+     "08:00": 29,
+     "19:00": 22,
+     "22:00": 12
+    },
+    "posts11_27": {
+     "08:00": 85,
+     "19:00": 90,
+     "22:00": 47
+    }
+   },
+   "tistory": {
+    "publicPosts": 21,
+    "drafts": 3,
+    "visitsYesterday": 2,
+    "visitorsYesterday": 2,
+    "visitsToday": 2,
+    "visitorsToday": 2,
+    "viewsTotal": 39,
+    "visitorsTotal": 24,
+    "subscribers": 0,
+    "inflow": {
+     "search": "0%",
+     "sns": "0%",
+     "etc": "100%"
+    },
+    "categories": {
+     "주식·증시": 6,
+     "AI·개발": 7,
+     "앱개발기": 3,
+     "유튜브 분석기": 2,
+     "뷰포인트": 1,
+     "개발 삽질 노트": 1,
+     "약관·방침": 4
+    },
+    "latestPost": {
+     "id": 21,
+     "publishedAt": "2026-11-28T20:35:00+09:00",
+     "category": "AI·개발"
+    }
+   },
+   "instagram": {
+    "handle": "@tinywow81",
+    "posts": 2,
+    "followers": 0,
+    "following": 0,
+    "reels": {
+     "lions": {
+      "shortcode": "DgSXwHkPl5g",
+      "publishedAt": "2026-11-28T22:35:00+09:00",
+      "views": 0,
+      "likes": 1,
+      "comments": 0
+     },
+     "panda": {
+      "shortcode": "DgRZmv0v6cs",
+      "publishedAt": "2026-11-28T13:30:00+09:00",
+      "views": 184,
+      "likes": 1,
+      "comments": 0
+     }
+    },
+    "note": "게시물 2편 모두 릴스. 유튜브 쇼츠 재사용. 프로필 링크 youtube.com/@TinyWow-m6x"
    }
   }
  ]

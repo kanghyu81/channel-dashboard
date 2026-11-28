@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#0f1220" />
-<meta name="description" content="유튜브 Tiny Wow · 스레드 @chalddop · 티스토리 달구랩 3채널 최신 현황 통합 대시보드 (2026-11-28 09:05 KST 기준)" />
-<title>채널 통합 대시보드 · 유튜브·스레드·티스토리</title>
+<meta name="description" content="유튜브 Tiny Wow · 스레드 @chalddop · 티스토리 달구랩 · 인스타 @tinywow81 4채널 최신 현황 통합 대시보드 (2026-11-28 22:35 KST 기준)" />
+<title>채널 통합 대시보드 · 유튜브·스레드·티스토리·인스타</title>
 <style>
   :root{
     --bg:#eef1f7;
@@ -17,6 +17,7 @@
     --yt:#ff0033;
     --th:#111318;
     --ts:#ff5a00;
+    --ig:#d6249f;
     --up:#0a8f5b;
     --down:#d23b3b;
     --shadow:0 6px 18px rgba(20,28,45,.07);
@@ -60,7 +61,7 @@
 
   /* ── summary strip ── */
   .summary{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 16px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0 16px;
   }
   .sum-card{
     background:var(--card);border:1px solid var(--line);border-radius:14px;
@@ -76,6 +77,7 @@
   .sum-card.yt{--accent:var(--yt);}
   .sum-card.th{--accent:var(--th);}
   .sum-card.ts{--accent:var(--ts);}
+  .sum-card.ig{--accent:var(--ig);}
 
   /* ── tabs ── */
   .tabs{
@@ -155,6 +157,7 @@
   .chip.yt{color:#c10028;background:#ffe8ed;}
   .chip.th{color:#22252c;background:#eceef2;}
   .chip.ts{color:#b83e00;background:#ffede2;}
+  .chip.ig{color:#a3187a;background:#fde9f5;}
 
   /* lists */
   ul.clean{list-style:none;margin:0;padding:0;}
@@ -209,7 +212,7 @@
     background:#fff;border:2.5px solid var(--line);box-shadow:0 0 0 3px #fff;
   }
   .timeline li.next .pin{border-color:var(--ink);}
-  .timeline li.yt .pin{border-color:var(--yt);} .timeline li.th .pin{border-color:var(--th);} .timeline li.ts .pin{border-color:var(--ts);}
+  .timeline li.yt .pin{border-color:var(--yt);} .timeline li.th .pin{border-color:var(--th);} .timeline li.ts .pin{border-color:var(--ts);} .timeline li.ig .pin{border-color:var(--ig);}
   .timeline .what{font-size:13.5px;font-weight:700;}
   .timeline .det{font-size:11.5px;color:var(--ink-3);margin-top:1px;}
 
@@ -242,7 +245,7 @@
   }
   @media (min-width:600px){
     .stats{grid-template-columns:repeat(4,1fr);}
-    .summary{gap:12px;}
+    .summary{gap:12px;grid-template-columns:repeat(4,1fr);}
   }
 </style>
 </head>
@@ -252,11 +255,13 @@
   <header class="top" id="top">
     <span class="eyebrow">CHANNEL OPS</span>
     <h1>채널 통합 대시보드</h1>
-    <p class="sub">유튜브 <b>@TinyWow-m6x</b> · 스레드 <b>@chalddop</b> · 티스토리 <b>달구랩</b></p>
+    <p class="sub">유튜브 <b>@TinyWow-m6x</b> · 스레드 <b>@chalddop</b> · 티스토리 <b>달구랩</b> · 인스타 <b>@tinywow81</b></p>
     <div class="stamp">
-      <span>기준 시각 <b>2026-11-28 09:05 KST</b></span>
+      <span>기준 시각 <b>2026-11-28 22:35 KST</b></span>
       <span>·</span>
       <span>실제 공개 페이지 확인값</span>
+      <span>·</span>
+      <span>직전 11/28 09:05</span>
     </div>
   </header>
 
@@ -264,18 +269,23 @@
   <section class="summary" aria-label="채널 핵심 지표 요약">
     <div class="sum-card yt">
       <div class="name">▶️ 유튜브</div>
-      <div class="big">39<span class="unit">구독자</span></div>
-      <div class="meta">영상 25개 · 총 18,943회</div>
+      <div class="big">42<span class="unit">구독자</span></div>
+      <div class="meta">영상 27개 · 총 20,498회</div>
     </div>
     <div class="sum-card th">
       <div class="name">🧵 스레드</div>
       <div class="big">3<span class="unit">팔로워</span></div>
-      <div class="meta">30일 12,485회 · 오늘 08:00 발행</div>
+      <div class="meta">30일 14,898회 · 3회 발행</div>
     </div>
     <div class="sum-card ts">
       <div class="name">📝 티스토리</div>
-      <div class="big">20<span class="unit">공개 글</span></div>
+      <div class="big">21<span class="unit">공개 글</span></div>
       <div class="meta">임시저장 3 · 오늘 조회 2</div>
+    </div>
+    <div class="sum-card ig">
+      <div class="name">📸 인스타</div>
+      <div class="big">2<span class="unit">릴스</span></div>
+      <div class="meta">팔로워 0 · 판다 184회</div>
     </div>
   </section>
 
@@ -285,84 +295,96 @@
     <button class="tab" role="tab" id="tab-youtube" aria-controls="panel-youtube" aria-selected="false" data-panel="youtube">▶️ 유튜브</button>
     <button class="tab" role="tab" id="tab-threads" aria-controls="panel-threads" aria-selected="false" data-panel="threads">🧵 스레드</button>
     <button class="tab" role="tab" id="tab-tistory" aria-controls="panel-tistory" aria-selected="false" data-panel="tistory">📝 티스토리</button>
+    <button class="tab" role="tab" id="tab-instagram" aria-controls="panel-instagram" aria-selected="false" data-panel="instagram">📸 인스타그램</button>
   </div>
 
   <!-- ================= OVERVIEW ================= -->
   <section class="panel active" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview">
 
     <div class="card">
-      <h2><span class="dot"></span>한눈에 보는 3채널</h2>
+      <h2><span class="dot"></span>한눈에 보는 4채널</h2>
 
-      <h3>▶️ 유튜브 — 구독자 39명, 10시간 반에 조회수 1,882회 늘었어요</h3>
-      <p class="lead">구독자 <b>33 → 39명</b>(+6), 채널 총 조회수 <b>17,061 → 18,943회</b>(+1,882). 영상은 24 → <b>25개</b>가 됐습니다 — 밤사이(0시 10분경) 새 쇼츠 <b>India Almost Lost Its Wild Lions</b>가 올라와 9시간에 <b>1.2천 회</b>(좋아요 19)를 기록 중입니다. 어제 올린 <b>Why Your Dog Follows You</b>는 <b>985회</b>, <b>북극곰</b>은 478 → <b>665회</b>, <b>Goldfish</b>는 863 → <b>948회</b>가 됐습니다.</p>
-      <p class="fine">영상별 합계는 약 19,954회(쇼츠 약 19,780 + 롱폼 174)로, 채널 정보란 <b>18,943회</b>와 약 1,011회 차이 — 채널 총 조회수 집계가 영상별 합계를 못 따라오는 상태가 이어집니다. 1천 회 이상으로 표시된 쇼츠는 <b>12편</b>(새 사자 쇼츠가 1.2천으로 합류)이고 최고는 곰·호랑이·판다와 아기 하마 <b>1,700회</b>. 롱폼은 Knut <b>4 → 7회</b>, 하치코 <b>58 → 61회</b>, 보이텍 37회·야생동물 40회·귀여운 동물 29회입니다.</p>
-
-      <div class="divider"></div>
-
-      <h3>🧵 스레드 — 30일 조회수 10,769 → 12,485회, 조회한 사람 9,695명</h3>
-      <p class="lead">30일 조회수 <b>10,769 → 12,485회</b>(+1,716), 조회한 사람 <b>8,238 → 9,695명</b>(+1,457), 반응 <b>60 → 66개</b>(+6). 팔로워는 <b>3명</b> 그대로이고 순 팔로워는 <b>+2</b>입니다.</p>
-      <p class="fine">게시물별 조회는 오늘 08:00 타래(2편)가 1시간에 <b>20회</b>, 어제 19:00 타래가 53 → <b>90회</b>, 22:00 타래가 20 → <b>47회</b>입니다. 세 게시물의 증가분을 다 합쳐도 160회 남짓인데 30일 인사이트는 1,716회 늘었습니다 — 프로필·검색 같은 게시물 밖 노출이 함께 잡히는 것으로 보입니다(추정).</p>
+      <h3>▶️ 유튜브 — 구독자 42명·총 조회수 2만 회 돌파</h3>
+      <p class="lead">구독자 <b>39 → 42명</b>(+3), 채널 총 조회수 <b>18,943 → 20,498회</b>(+1,555). 영상은 25 → <b>27개</b> — 오늘 새 쇼츠 두 편(<b>Cats Make Biscuits</b> 1.1천 회 · <b>A Squirrel's Secret Job</b> 472회)이 올라왔습니다. 어제 올린 <b>사자 쇼츠</b>는 1,200 → <b>1.5천 회</b>로 더 붙었습니다.</p>
+      <p class="fine">1천 회 이상으로 표시된 쇼츠가 <b>12 → 15편</b>으로 늘었고 최고는 곰·호랑이·판다와 아기 하마 <b>1,700회</b>입니다. 롱폼은 하치코 <b>61 → 77회</b>가 가장 많이 늘었고 Knut은 7회 그대로, 보이텍 37 · 야생동물 40 · 귀여운 동물 29회입니다. 영상별 합계는 약 21,977회로 채널 정보란(20,498회)과 약 1,479회 차이 — 집계 지연이 그대로 이어집니다.</p>
 
       <div class="divider"></div>
 
-      <h3>📝 티스토리 — 08:21 20번 글 공개, 오늘 조회 2·방문자 2</h3>
-      <p class="lead">08:21 <b>주식·증시 20번 글</b>(코스피 전망·삼성전자 17.9만·나스닥 +2.31%)이 공개돼 공개 글이 <b>20편</b>이 됐습니다(주식·증시 6 / AI·개발 6). 임시저장 3편은 그대로 대기 중입니다.</p>
-      <p class="fine">오늘 조회 <b>2</b>·방문자 <b>2</b>(누적 조회 <b>39</b>·방문자 <b>24</b>), 어제(11/27)는 <b>2·2</b>였습니다. 유입은 검색 <b>0</b> · SNS <b>0</b> · 기타 2(직접 2)이고 유입 키워드도 없습니다. 오늘 인기글 1위는 새로 올린 20번 글(조회 2)입니다.</p>
+      <h3>🧵 스레드 — 30일 조회수 12,485 → 14,898회</h3>
+      <p class="lead">30일 조회수 <b>+2,413회</b>, 조회한 사람 <b>9,695 → 11,801명</b>(+2,106), 반응 <b>66 → 76개</b>(+10). 팔로워는 <b>3명</b>, 순 팔로워 <b>+2</b>입니다.</p>
+      <p class="fine">오늘 세 회차 모두 나갔습니다 — 08:00 타래 2편이 14시간에 <b>29회</b>(조회한 사람 27), 19:00 타래 5편이 3시간에 <b>22회</b>, 22:00 타래 2편(22:17 발행)이 18분에 <b>12회</b>. 저녁 타래는 어제 같은 슬롯(3시간 53회 → 하루 90회)보다 출발이 느립니다.</p>
+
+      <div class="divider"></div>
+
+      <h3>📝 티스토리 — 공개 글 21편, 오늘 2편 발행</h3>
+      <p class="lead">08:21 <b>20번 글</b>(주식·증시)에 이어 20:35 <b>21번 글</b>(AI·개발, Gemini 전화·Mac 제어 &amp; 클로드 앱 설치)이 공개돼 공개 글이 <b>21편</b>이 됐습니다(주식·증시 6 / AI·개발 7). 임시저장 3편은 그대로입니다.</p>
+      <p class="fine">오늘 조회 <b>2</b>·방문자 <b>2</b>(누적 조회 <b>39</b>·방문자 <b>24</b>), 어제(11/27)도 <b>2·2</b>였습니다. 유입은 검색 <b>0</b> · SNS <b>0</b> · 직접 2, 유입 키워드 없음 — 검색 유입이 나흘째 0%입니다. 인기글 1위는 20번 글(조회 2).</p>
+
+      <div class="divider"></div>
+
+      <h3>📸 인스타그램 — 이번 회차부터 4번째 채널로 합류</h3>
+      <p class="lead">@tinywow81에 <b>릴스 2편</b>이 올라와 있습니다. 어제(9시간 전) 올린 <b>판다 릴스</b>가 <b>184회</b>, 방금(22:35경) 올린 <b>아시아사자 릴스</b>는 아직 <b>0회</b>입니다. 좋아요는 각 1개, 댓글 0, 팔로워 <b>0명</b>.</p>
+      <p class="fine">첫 이틀 계정이라 도달은 전적으로 릴스 추천에 달려 있습니다. 프로필 소개글과 유튜브 링크(@TinyWow-m6x)는 넣어 두었으니, 유튜브 쇼츠를 릴스로 그대로 재사용해 편수를 늘리는 것이 다음 단계입니다.</p>
     </div>
 
     <div class="card">
       <h2><span class="dot"></span>오늘(11/28) 자동화 타임라인</h2>
-      <p class="lead">지금 09:05 — 아침 회차가 끝났습니다. 다음은 <b>19:00 스레드 저녁 타래</b>입니다.</p>
+      <p class="lead">지금 22:35 — 오늘 회차는 모두 끝났습니다. 다음은 <b>내일 08:00 스레드 아침 타래</b>입니다.</p>
       <ul class="timeline">
         <li class="yt">
           <span class="time">00:10</span><span class="pin"></span>
           <div class="what">유튜브 쇼츠 <b>India Almost Lost Its Wild Lions</b> <span class="chip yt">쇼츠</span> <span class="chip up">✓ 공개</span></div>
-          <div class="det">밤사이 한 편 올라와 9시간에 <b>1.2천 회</b> · 좋아요 19 · 댓글 1</div>
+          <div class="det">9시간에 1.2천 → 지금 <b>1.5천 회</b> · 좋아요 19 · 오늘 가장 많이 붙은 쇼츠</div>
+        </li>
+        <li class="yt">
+          <span class="time">낮</span><span class="pin"></span>
+          <div class="what">유튜브 쇼츠 2편 추가 <span class="chip yt">Cats · Squirrel</span> <span class="chip up">✓ 공개</span></div>
+          <div class="det"><b>Cats Make Biscuits</b> 1.1천 · <b>A Squirrel's Secret Job</b> 472 — 업로드 시각은 영상 목록에 표시되지 않아 확인 못 함</div>
         </li>
         <li class="th">
           <span class="time">08:00</span><span class="pin"></span>
-          <div class="what">스레드 아침 타래 <span class="chip th">2편</span> <span class="chip up">✓ 발행 · 1시간 20회</span></div>
-          <div class="det"><a href="https://www.threads.com/@chalddop/post/DgQ0aCuErDT" target="_blank" rel="noopener">아침 타래</a> · 어제 같은 슬롯은 1시간 37분에 37회 → 하루 85회</div>
+          <div class="what">스레드 아침 타래 <span class="chip th">2편</span> <span class="chip up">✓ 발행 · 29회</span></div>
+          <div class="det"><a href="https://www.threads.com/@chalddop/post/DgQ0aCuErDT" target="_blank" rel="noopener">아침 타래</a> · 14시간에 29회(조회한 사람 27) · 어제 같은 슬롯은 하루 85회</div>
         </li>
         <li class="ts">
           <span class="time">08:21</span><span class="pin"></span>
           <div class="what">티스토리 아침 글 <span class="chip ts">주식·증시</span> <span class="chip up">✓ 완료</span></div>
-          <div class="det"><a href="https://dalgulab.tistory.com/20" target="_blank" rel="noopener">20번 글</a> · 코스피 전망·삼성전자 17.9만·나스닥 +2.31% · 오늘 인기글 1위(조회 2)</div>
+          <div class="det"><a href="https://dalgulab.tistory.com/20" target="_blank" rel="noopener">20번 글</a> · 인기글 1위(조회 2)</div>
         </li>
-        <li>
-          <span class="time">09:00</span><span class="pin"></span>
-          <div class="what">댓글 소통 회차 <span class="chip flat">별도 예약 작업</span></div>
-          <div class="det">오늘 첫 회차 — 결과는 밤 22:30 갱신 때 반영합니다</div>
-        </li>
-        <li>
-          <span class="time">09:00</span><span class="pin"></span>
-          <div class="what">대시보드 자동 갱신 <span class="chip up">✓ 완료</span></div>
-          <div class="det">하루 2번 갱신 중 첫 번째 회차 — 지금 보고 있는 화면</div>
+        <li class="ig">
+          <span class="time">13:30</span><span class="pin"></span>
+          <div class="what">인스타 릴스 <b>판다</b> <span class="chip ig">릴스</span> <span class="chip up">✓ 공개 · 184회</span></div>
+          <div class="det">게시 9시간 전 · 좋아요 1 · 댓글 0 · 릴스 탭 조회수 184</div>
         </li>
         <li class="th">
           <span class="time">19:00</span><span class="pin"></span>
-          <div class="what">스레드 저녁 타래 <span class="chip th">5편</span> <span class="chip flat">오늘 예정</span></div>
-          <div class="det">어제 이 슬롯은 하루 만에 <b>90회</b> — 5편 구성 유지</div>
+          <div class="what">스레드 저녁 타래 <span class="chip th">5편</span> <span class="chip up">✓ 발행 · 22회</span></div>
+          <div class="det"><a href="https://www.threads.com/@chalddop/post/DgR_oXikqgz" target="_blank" rel="noopener">저녁 타래</a> · 3시간에 22회(조회한 사람 21) · 어제 같은 슬롯은 3시간 53회 → 하루 90회</div>
         </li>
         <li class="ts">
-          <span class="time">20:30</span><span class="pin"></span>
-          <div class="what">티스토리 저녁 글 <span class="chip ts">AI·개발</span> <span class="chip flat">오늘 예정</span></div>
-          <div class="det">21번 글 · AI 최신 뉴스 + GitHub 트렌딩</div>
+          <span class="time">20:35</span><span class="pin"></span>
+          <div class="what">티스토리 저녁 글 <span class="chip ts">AI·개발</span> <span class="chip up">✓ 완료</span></div>
+          <div class="det"><a href="https://dalgulab.tistory.com/21" target="_blank" rel="noopener">21번 글</a> · 오늘 AI 뉴스·파이썬 가드·GitHub 트렌딩 2선 · 태그 8개</div>
         </li>
         <li class="th">
           <span class="time">22:00</span><span class="pin"></span>
-          <div class="what">스레드 밤 타래 <span class="chip th">2편</span> <span class="chip flat">오늘 예정</span></div>
-          <div class="det">어제 밤 타래는 하루 만에 <b>47회</b></div>
+          <div class="what">스레드 밤 타래 <span class="chip th">2편</span> <span class="chip up">✓ 발행 · 12회</span></div>
+          <div class="det"><a href="https://www.threads.com/@chalddop/post/DgSVxo4kiM3" target="_blank" rel="noopener">밤 타래</a> · 실제 발행 22:17 · 18분에 12회(조회한 사람 0)</div>
+        </li>
+        <li class="ig">
+          <span class="time">22:35</span><span class="pin"></span>
+          <div class="what">인스타 릴스 <b>아시아사자</b> <span class="chip ig">릴스</span> <span class="chip up">✓ 공개 직후</span></div>
+          <div class="det">조회 0 · 좋아요 1 · 판다와 같은 구성(숫자 + 반전)의 두 번째 릴스</div>
         </li>
         <li>
-          <span class="time">22:30</span><span class="pin"></span>
-          <div class="what">대시보드 자동 갱신 <span class="chip flat">오늘 예정</span></div>
-          <div class="det">하루 2번 갱신 중 두 번째 회차</div>
+          <span class="time">22:35</span><span class="pin"></span>
+          <div class="what">대시보드 자동 갱신 <span class="chip up">✓ 완료</span></div>
+          <div class="det">하루 2번 갱신 중 두 번째 회차 — 인스타 탭이 이번에 새로 붙었습니다</div>
         </li>
         <li class="next">
           <span class="time">내일</span><span class="pin"></span>
-          <div class="what">08:00 스레드 아침 타래 · 08:15 티스토리 아침 글 <span class="chip flat">예정</span></div>
-          <div class="det">아침 타래는 2편 구성 유지, 티스토리는 주식·증시 21번 글</div>
+          <div class="what">08:00 스레드 아침 · 08:15 티스토리 아침 · 20:30 티스토리 저녁 · 인스타 릴스 <span class="chip flat">예정</span></div>
+          <div class="det">스레드 3회(08·19·22) 유지, 티스토리 22번 글은 주식·증시, 인스타는 유튜브 쇼츠 재사용 1편</div>
         </li>
       </ul>
     </div>
@@ -373,24 +395,24 @@
         <li>
           <div class="row"><span class="rank top">1</span>
             <div class="body">
-              <div class="tl">스레드 아침 08:00 — 오늘은 1시간 20회, 어제보다 느립니다</div>
-              <div class="mt">어제 같은 슬롯은 1시간 37분에 37회 → 하루 85회였습니다 · 저녁(19:00 90회·22:00 47회)처럼 잘 붙는 시간대와 비교해, 내일 아침은 첫 문장만 바꿔 봅니다</div>
+              <div class="tl">인스타를 '유튜브 쇼츠 재활용 채널'로 굴리기</div>
+              <div class="mt">릴스 2편·팔로워 0 · 판다 <b>184회</b>는 첫 이틀치로 나쁘지 않습니다 → 이미 만든 쇼츠(사자·고양이·다람쥐)를 9:16 그대로 하루 1편씩 올리고, 캡션 끝에 유튜브 링크 유지</div>
             </div>
           </div>
         </li>
         <li>
           <div class="row"><span class="rank top">2</span>
             <div class="body">
-              <div class="tl">Knut 롱폼 7회 — 하치코(61회)의 9분의 1</div>
-              <div class="mt">24시간에 4 → 7회로 조금씩 오르지만 격차가 큽니다 · 어제 올린 북극곰 쇼츠(665회)가 같은 소재이니 설명란·고정 댓글에 Knut 링크를 넣어 유도</div>
+              <div class="tl">스레드 저녁 19:00 출발이 느립니다</div>
+              <div class="mt">3시간 <b>22회</b> — 어제 같은 슬롯은 3시간 53회 → 하루 90회였습니다 · 5편 구성은 유지하되 첫 카드 문구(숫자·반전)를 어제 19:00 글과 비교해 내일 한 번 바꿔 보기</div>
             </div>
           </div>
         </li>
         <li>
           <div class="row"><span class="rank top">3</span>
             <div class="body">
-              <div class="tl">티스토리 검색 유입은 나흘째 0%</div>
-              <div class="mt">글 20편을 쌓고도 오늘 조회 2·방문자 2 그대로, 유입 키워드 없음 → 20번 글 제목을 네이버·구글에 직접 검색해 색인 여부부터 확인</div>
+              <div class="tl">티스토리 검색 유입 나흘째 0%</div>
+              <div class="mt">글 21편·오늘 2편 발행에도 조회 2·방문자 2 그대로, 유입 키워드 없음 → 새 글 제목을 네이버·구글에 직접 검색해 색인 여부 확인</div>
             </div>
           </div>
         </li>
@@ -411,10 +433,10 @@
       </div>
 
       <div class="stats">
-        <div class="stat"><div class="k">구독자</div><div class="v">39<small>명</small></div><div class="d"><span class="chip up">▲ +6</span> 11/27 22:35 33명</div></div>
-        <div class="stat"><div class="k">동영상</div><div class="v">25<small>개</small></div><div class="d"><span class="chip up">▲ +1</span> 밤사이 쇼츠 1편</div></div>
-        <div class="stat"><div class="k">채널 총 조회수</div><div class="v">18,943<small>회</small></div><div class="d"><span class="chip up">▲ +1,882</span> 22:35 17,061회</div></div>
-        <div class="stat"><div class="k">1천 회 이상 쇼츠</div><div class="v">12<small>편</small></div><div class="d"><span class="chip up">▲ +1</span> 최고 1,700회</div></div>
+        <div class="stat"><div class="k">구독자</div><div class="v">42<small>명</small></div><div class="d"><span class="chip up">▲ +3</span> 11/28 09:05 39명</div></div>
+        <div class="stat"><div class="k">동영상</div><div class="v">27<small>개</small></div><div class="d"><span class="chip up">▲ +2</span> 오늘 쇼츠 2편</div></div>
+        <div class="stat"><div class="k">채널 총 조회수</div><div class="v">20,498<small>회</small></div><div class="d"><span class="chip up">▲ +1,555</span> 09:05 18,943회</div></div>
+        <div class="stat"><div class="k">1천 회 이상 쇼츠</div><div class="v">15<small>편</small></div><div class="d"><span class="chip up">▲ +3</span> 최고 1,700회</div></div>
       </div>
 
       <div class="note">
@@ -436,7 +458,7 @@
           <a class="row" href="https://www.youtube.com/watch?v=RtHXEks84xk" target="_blank" rel="noopener">
             <div class="body">
               <div class="tl">The Zookeeper Who Raised a Baby Polar Bear: The True Story of Knut</div>
-              <div class="mt">6분 50초 · <b>어제 09:00 공개</b> · 24시간에 7회 (22:35 4회)</div>
+              <div class="mt">6분 50초 · <b>어제 09:00 공개</b> · 7 → 7 (하루 동안 변화 없음)</div>
             </div>
             <div class="views">7<small>조회수</small></div>
           </a>
@@ -445,16 +467,16 @@
           <a class="row" href="https://www.youtube.com/watch?v=F1skKHcRPnY" target="_blank" rel="noopener">
             <div class="body">
               <div class="tl">The Loyal Dog Who Waited Almost 10 Years: The True Story of Hachiko</div>
-              <div class="mt">6분 50초 · <b>2일 전</b> 업로드 (11/25 오전) · 58 → 61</div>
+              <div class="mt">6분 50초 · <b>3일 전</b> 업로드 · 61 → <b>77</b> (+16, 오늘 가장 많이 늘어난 롱폼)</div>
             </div>
-            <div class="views">61<small>조회수</small></div>
+            <div class="views">77<small>조회수</small></div>
           </a>
         </li>
         <li>
           <a class="row" href="https://www.youtube.com/watch?v=0-yyuNBaeeU" target="_blank" rel="noopener">
             <div class="body">
               <div class="tl">The Bear Who Joined an Army: The True Story of Wojtek</div>
-              <div class="mt">8분 8초 · <b>3일 전</b> 업로드 · 37 → 37</div>
+              <div class="mt">8분 8초 · <b>4일 전</b> 업로드 · 37 → 37</div>
             </div>
             <div class="views">37<small>조회수</small></div>
           </a>
@@ -463,7 +485,7 @@
           <a class="row" href="https://www.youtube.com/watch?v=5WHMnGVS0rI" target="_blank" rel="noopener">
             <div class="body">
               <div class="tl">세계의 야생동물 🐻🐯🐼 | 미국 · 인도 · 중국 · 일본</div>
-              <div class="mt">2분 29초 · 4일 전 · 40 → 40</div>
+              <div class="mt">2분 29초 · 6일 전 · 40 → 40</div>
             </div>
             <div class="views">40<small>조회수</small></div>
           </a>
@@ -472,13 +494,13 @@
           <a class="row" href="https://www.youtube.com/watch?v=MYGjdsaCqks" target="_blank" rel="noopener">
             <div class="body">
               <div class="tl">보기만 해도 웃음 나는 귀여운 동물들 🥰 | 아기 들소, 판다, 레서판다, 나라 사슴, 고양이 섬</div>
-              <div class="mt">2분 23초 · 4일 전 · 29 → 29</div>
+              <div class="mt">2분 23초 · 6일 전 · 29 → 29</div>
             </div>
             <div class="views">29<small>조회수</small></div>
           </a>
         </li>
       </ul>
-      <p class="fine">롱폼 5편 합계 174회(Knut 7 · 하치코 61 · 보이텍 37 · 야생동물 40 · 귀여운 동물 29). 22:35(168회)에서 6회 늘었고 Knut과 하치코가 각 3회입니다. Knut은 24시간에 7회 — 같은 포맷 하치코(2일 전 61회)와 여전히 9배 차이입니다.</p>
+      <p class="fine">롱폼 5편 합계 190회(하치코 77 · 야생동물 40 · 보이텍 37 · 귀여운 동물 29 · Knut 7). 13시간 전(174회)에서 16회 늘었고 그중 16회가 하치코입니다. Knut은 공개 하루 만에 7회로 멈춰, 같은 포맷 하치코(77회)와 11배 차이입니다.</p>
     </div>
 
     <div class="card" style="--accent:var(--yt)">
@@ -486,31 +508,35 @@
       <div class="barlist">
         <div class="bar"><span class="lab">곰·호랑이·판다·온천 원숭이</span><span class="val">1,700</span><div class="track"><div class="fill" style="width:100%"></div></div></div>
         <div class="bar"><span class="lab">아기 하마, 거북이 엄마를 만나다</span><span class="val">1,700</span><div class="track"><div class="fill" style="width:100%"></div></div></div>
+        <div class="bar"><span class="lab">India Almost Lost Its Wild Lions 🦁 1,200 → 1,500</span><span class="val">1,500</span><div class="track"><div class="fill" style="width:88.2%"></div></div></div>
         <div class="bar"><span class="lab">Baby Farm Animals: Only ONE Comes Home</span><span class="val">1,300</span><div class="track"><div class="fill" style="width:76.5%"></div></div></div>
         <div class="bar"><span class="lab">Why Do Penguins Waddle? 🐧</span><span class="val">1,200</span><div class="track"><div class="fill" style="width:70.6%"></div></div></div>
         <div class="bar"><span class="lab">인사하는 사슴·느긋한 판다·고양이 섬</span><span class="val">1,200</span><div class="track"><div class="fill" style="width:70.6%"></div></div></div>
-        <div class="bar"><span class="lab">India Almost Lost Its Wild Lions 🦁 <b style="color:#08744a">NEW</b></span><span class="val">1,200</span><div class="track"><div class="fill" style="width:70.6%"></div></div></div>
+        <div class="bar"><span class="lab">Cats Make Biscuits for 4 Reasons 🍞 <b style="color:#08744a">NEW</b></span><span class="val">1,100</span><div class="track"><div class="fill" style="width:64.7%"></div></div></div>
         <div class="bar"><span class="lab">Snow Cat or Couch Cat?</span><span class="val">1,100</span><div class="track"><div class="fill" style="width:64.7%"></div></div></div>
         <div class="bar"><span class="lab">Owls Can't Move Their Eyes</span><span class="val">1,100</span><div class="track"><div class="fill" style="width:64.7%"></div></div></div>
         <div class="bar"><span class="lab">Why Do Sea Otters Hold HANDS?</span><span class="val">1,100</span><div class="track"><div class="fill" style="width:64.7%"></div></div></div>
-        <div class="bar"><span class="lab">4 Baby Animals: Guess What They Grow Into</span><span class="val">1,100</span><div class="track"><div class="fill" style="width:64.7%"></div></div></div>
       </div>
 
-      <h3>그 아래 (1,000회 이하)</h3>
+      <h3>1,000회 표시 (반올림)</h3>
       <ul class="clean">
-        <li><a class="row" href="https://www.youtube.com/shorts/cfqhY4vhvMY" target="_blank" rel="noopener"><div class="body"><div class="tl">Do Dogs Only Love You for Food? Scientists Checked</div><div class="mt">동물·호기심 · 1,000 → 1,000 (1천 단위 반올림 표시)</div></div><div class="views">1,000<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/EZjTxRCI5s4" target="_blank" rel="noopener"><div class="body"><div class="tl">Why Your Dog Follows You EVERYWHERE 🐶</div><div class="mt">어제 공개 · 985 → 1,000 표시</div></div><div class="views">1,000<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/G5vWxZ_IYMY" target="_blank" rel="noopener"><div class="body"><div class="tl">What Elephants Do When a Friend Is Scared 🐘</div><div class="mt">동물·감성 · 987 → <b>1,000</b> 표시 (1천 진입)</div></div><div class="views">1,000<small>조회수</small></div></a></li>
         <li><a class="row" href="https://www.youtube.com/shorts/WbxaqkQ_2Ow" target="_blank" rel="noopener"><div class="body"><div class="tl">An Old Dog's Day: Slower, Grayer, Still Yours</div><div class="mt">동물·감성 · 1,000 → 1,000</div></div><div class="views">1,000<small>조회수</small></div></a></li>
-        <li><a class="row" href="https://www.youtube.com/shorts/G5vWxZ_IYMY" target="_blank" rel="noopener"><div class="body"><div class="tl">What Elephants Do When a Friend Is Scared 🐘 <b style="color:#c2410c">990 → 987</b></div><div class="mt">동물·감성 · <b>987</b> (집계가 3 줄었습니다) — 1천 목전에서 멈춤</div></div><div class="views">987<small>조회수</small></div></a></li>
-        <li><a class="row" href="https://www.youtube.com/shorts/EZjTxRCI5s4" target="_blank" rel="noopener"><div class="body"><div class="tl">Why Your Dog Follows You EVERYWHERE 🐶</div><div class="mt">어제 공개 · 985 (22:35 985, 변화 없음)</div></div><div class="views">985<small>조회수</small></div></a></li>
-        <li><a class="row" href="https://www.youtube.com/shorts/Afv-LoX8MtM" target="_blank" rel="noopener"><div class="body"><div class="tl">Goldfish Remember for MONTHS, Not 3 Seconds 🐟</div><div class="mt">동물·호기심 · 863 → <b>948</b></div></div><div class="views">948<small>조회수</small></div></a></li>
-        <li><a class="row" href="https://www.youtube.com/shorts/QsxFXaMPWs4" target="_blank" rel="noopener"><div class="body"><div class="tl">Dolphins Tell These Fishermen When to Throw 🐬</div><div class="mt">동물·이색 사실 · 772 → 772</div></div><div class="views">772<small>조회수</small></div></a></li>
-        <li><a class="row" href="https://www.youtube.com/shorts/9yt1Q3Fck5I" target="_blank" rel="noopener"><div class="body"><div class="tl">He Raised a Baby Polar Bear by Hand 🐻‍❄️</div><div class="mt">어제 공개 · 478 → <b>665</b> (하루 만에 1.4배)</div></div><div class="views">665<small>조회수</small></div></a></li>
-        <li><a class="row" href="https://www.youtube.com/shorts/S6CyNmiZtI0" target="_blank" rel="noopener"><div class="body"><div class="tl">This Bear Was a Real Soldier 🐻</div><div class="mt">보이텍 숏츠 · 343 → 343</div></div><div class="views">343<small>조회수</small></div></a></li>
-        <li><a class="row" href="https://www.youtube.com/shorts/geeJJ3JXMP4" target="_blank" rel="noopener"><div class="body"><div class="tl">He Waited at the Station for Almost 10 Years 🐕</div><div class="mt">하치코 숏츠 · 329 → 330</div></div><div class="views">330<small>조회수</small></div></a></li>
-        <li><a class="row" href="https://www.youtube.com/shorts/O05AmUV3eEU" target="_blank" rel="noopener"><div class="body"><div class="tl">6 Baby Animals. You Can Keep Only ONE 😳</div><div class="mt">동물·선택형 · 52 → 52</div></div><div class="views">52<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/6XaQuPEc178" target="_blank" rel="noopener"><div class="body"><div class="tl">4 Baby Animals: Guess What They Grow Into 🤔</div><div class="mt">동물·퀴즈형 · 1,100 → 1,100</div></div><div class="views">1,100<small>조회수</small></div></a></li>
       </ul>
-      <p class="fine">공개 쇼츠 20편 합계 약 19,780회(롱폼 포함 약 19,954회). 채널 화면 총 조회수 <b>18,943회</b>는 22:35(17,061)보다 <b>1,882회</b> 늘었고, 영상별 합계와의 차이는 약 1,320 → 약 1,011회로 조금 줄었습니다. 1천 회 이상 표시된 쇼츠는 <b>12편</b>.</p>
-      <p class="fine">🆕 밤사이 쇼츠 <b>1편</b>이 새로 올라왔습니다 — <b>India Almost Lost Its Wild Lions</b>(1.2천 회·9시간). 기존 쇼츠에서 가장 크게 늘어난 것은 <b>북극곰 478 → 665회</b>(+187)와 <b>Goldfish 863 → 948회</b>(+85)입니다. 한국 문화 쇼츠 “Korean parents use a goblin…”은 오늘도 공개 목록에 없습니다(공개 쇼츠 20편 = 영상 25 − 롱폼 5).</p>
+
+      <h3>그 아래</h3>
+      <ul class="clean">
+        <li><a class="row" href="https://www.youtube.com/shorts/Afv-LoX8MtM" target="_blank" rel="noopener"><div class="body"><div class="tl">Goldfish Remember for MONTHS, Not 3 Seconds 🐟</div><div class="mt">동물·호기심 · 948 → 955</div></div><div class="views">955<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/QsxFXaMPWs4" target="_blank" rel="noopener"><div class="body"><div class="tl">Dolphins Tell These Fishermen When to Throw 🐬</div><div class="mt">동물·이색 사실 · 772 → 772</div></div><div class="views">772<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/9yt1Q3Fck5I" target="_blank" rel="noopener"><div class="body"><div class="tl">He Raised a Baby Polar Bear by Hand 🐻‍❄️</div><div class="mt">어제 공개 · 665 → <b>761</b> (+96)</div></div><div class="views">761<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/@TinyWow-m6x/shorts" target="_blank" rel="noopener"><div class="body"><div class="tl">A Squirrel's Secret Job: Planting Trees by Accident 🐿️</div><div class="mt">오늘 공개 · 472회로 출발</div></div><div class="views">472<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/S6CyNmiZtI0" target="_blank" rel="noopener"><div class="body"><div class="tl">This Bear Was a Real Soldier 🐻</div><div class="mt">보이텍 숏츠 · 343 → 344</div></div><div class="views">344<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/geeJJ3JXMP4" target="_blank" rel="noopener"><div class="body"><div class="tl">He Waited at the Station for Almost 10 Years 🐕</div><div class="mt">하치코 숏츠 · 330 → 331</div></div><div class="views">331<small>조회수</small></div></a></li>
+        <li><a class="row" href="https://www.youtube.com/shorts/O05AmUV3eEU" target="_blank" rel="noopener"><div class="body"><div class="tl">6 Baby Animals. You Can Keep Only ONE 😳</div><div class="mt">동물·선택형 · 52 → 52 (5일째 그대로)</div></div><div class="views">52<small>조회수</small></div></a></li>
+      </ul>
+      <p class="fine">공개 쇼츠 22편 합계 약 21,787회(롱폼 포함 약 21,977회), 채널 총 조회수 <b>20,498회</b>와 약 1,479회 차이. 오늘 늘어난 폭이 컸던 것은 <b>사자 1,200 → 1,500</b>(+300) · <b>북극곰 665 → 761</b>(+96)이고, 새 쇼츠는 고양이 <b>1.1천</b> · 다람쥐 <b>472</b>로 갈렸습니다. 공개 쇼츠 22편 = 영상 27 − 롱폼 5.</p>
     </div>
 
     <div class="card" style="--accent:var(--yt)">
@@ -520,13 +546,14 @@
         <dt>범용 배너</dt><dd><code>downloads/tinywow-banner-general.png</code> (2560×1440)</dd>
         <dt>썸네일 3종</dt><dd><code>tinywow-thumb-pack-1.png</code> · <code>-2.png</code> · <code>-3.png</code></dd>
         <dt>대본 3편</dt><dd><code>downloads/tinywow-scripts-pack-2026-11-24.md</code><br>① 문어 심장 3개·파란 피(숏츠) ② 체커 그림자 착시(숏츠) ③ 작은 경이로움 5가지(롱폼 3분)</dd>
+        <dt>영상 원본</dt><dd><code>downloads/tinywow-panda-shorts-2026-11-27.mp4</code>(인스타 판다 릴스로 사용) · <code>downloads/reel-02-EgqfoU6juCo.mp4</code></dd>
         <dt>소개글·고정 댓글</dt><dd>범용 소개글 반영 완료 · 고정 댓글 템플릿 3종(선택형·호기심형·문화/스토리형)</dd>
       </dl>
       <h3>다음 할 일</h3>
       <ul class="clean">
-        <li><div class="row"><span class="rank top">1</span><div class="body"><div class="tl">사자 쇼츠가 9시간에 1.2천 회 — 소재가 통했습니다</div><div class="mt">‘멸종 위기에서 891마리로’ 같은 숫자+회복 서사가 첫날부터 붙었습니다 · 같은 구성(숫자 + 반전)으로 한 편 더</div></div></div></li>
-        <li><div class="row"><span class="rank top">2</span><div class="body"><div class="tl">Knut 롱폼은 쇼츠에서 데려오기</div><div class="mt">롱폼 7회 vs 하치코 61회 → 북극곰 쇼츠(665회) 설명란·고정 댓글에 Knut 링크를 넣어 유도</div></div></div></li>
-        <li><div class="row"><span class="rank top">3</span><div class="body"><div class="tl">엘리펀츠가 990 → 987회로 1천에서 멈췄습니다</div><div class="mt">1천 미만 상위에 987·985·948이 몰려 있습니다 · 만들어 둔 대본 3편은 아직 미업로드</div></div></div></li>
+        <li><div class="row"><span class="rank top">1</span><div class="body"><div class="tl">고양이 소재가 1.1천으로 출발 — 반전형 한 편 더</div><div class="mt">같은 날 올린 다람쥐(472)와 2.3배 차이 · 'Cats Make Biscuits' 구성(행동 → 4가지 이유)을 다른 동물에 이식</div></div></div></li>
+        <li><div class="row"><span class="rank top">2</span><div class="body"><div class="tl">Knut 롱폼은 쇼츠에서 데려오기</div><div class="mt">하루 만에 7회로 정지 · 북극곰 쇼츠(761회) 설명란·고정 댓글에 Knut 링크 삽입</div></div></div></li>
+        <li><div class="row"><span class="rank top">3</span><div class="body"><div class="tl">사자 쇼츠를 인스타·스레드에도 재사용</div><div class="mt">1.5천 회로 오늘 가장 잘 붙은 소재 · 인스타 릴스로 그대로 올려 교차 노출</div></div></div></li>
       </ul>
     </div>
   </section>
@@ -544,16 +571,16 @@
       </div>
 
       <div class="stats">
-        <div class="stat"><div class="k">팔로워</div><div class="v">3<small>명</small></div><div class="d"><span class="chip flat">변동 없음</span> 11/27 22:35 3명</div></div>
-        <div class="stat"><div class="k">30일 조회수</div><div class="v">12,485<small>회</small></div><div class="d"><span class="chip up">▲ +1,716</span> 22:35 10,769</div></div>
-        <div class="stat"><div class="k">조회한 사람</div><div class="v">9,695<small>명</small></div><div class="d"><span class="chip up">▲ +1,457</span> 22:35 8,238</div></div>
-        <div class="stat"><div class="k">반응</div><div class="v">66<small>개</small></div><div class="d"><span class="chip up">▲ +6</span> 22:35 60 · 순 팔로워 +2</div></div>
+        <div class="stat"><div class="k">팔로워</div><div class="v">3<small>명</small></div><div class="d"><span class="chip flat">변동 없음</span> 프로필 표시 1.4만 조회</div></div>
+        <div class="stat"><div class="k">30일 조회수</div><div class="v">14,898<small>회</small></div><div class="d"><span class="chip up">▲ +2,413</span> 09:05 12,485</div></div>
+        <div class="stat"><div class="k">조회한 사람</div><div class="v">11,801<small>명</small></div><div class="d"><span class="chip up">▲ +2,106</span> 09:05 9,695</div></div>
+        <div class="stat"><div class="k">반응</div><div class="v">76<small>개</small></div><div class="d"><span class="chip up">▲ +10</span> 09:05 66 · 순 팔로워 +2</div></div>
       </div>
       <p class="fine">30일 인사이트를 로그인 세션에서 직접 확인한 값입니다. 이번 회차에는 조회한 사람 유형·국가 구성을 따로 열지 않았습니다(직전 측정: 팔로워 2 / 팔로워 아님 8,236).</p>
 
       <h3>30일 조회수 추이 (관찰 기록)</h3>
       <div class="chartbox">
-        <svg viewBox="0 0 600 170" role="img" aria-label="30일 조회수 추이: 463 → 1,023 → 1,458 → 2,277 → 4,821 → 5,481 → 6,038 → 6,588 → 6,709 → 7,107 → 10,769 → 12,485">
+        <svg viewBox="0 0 600 170" role="img" aria-label="30일 조회수 추이: 463 → 1,023 → 1,458 → 2,277 → 4,821 → 5,481 → 6,038 → 6,588 → 6,709 → 7,107 → 10,769 → 12,485 → 14,898">
           <defs>
             <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#111318" stop-opacity=".16"/>
@@ -561,57 +588,77 @@
             </linearGradient>
           </defs>
           <line x1="0" y1="140" x2="600" y2="140" stroke="#e3e7ef" stroke-width="1"/>
-          <path d="M0.0,135.4 L54.5,129.8 L109.1,125.4 L163.6,117.2 L218.2,91.7 L272.7,85.1 L327.3,79.5 L381.8,74.0 L436.4,72.8 L490.9,68.8 L545.5,32.2 L600.0,15.0 L600,140 L0,140 Z" fill="url(#g1)"/>
-          <polyline points="0.0,135.4 54.5,129.8 109.1,125.4 163.6,117.2 218.2,91.7 272.7,85.1 327.3,79.5 381.8,74.0 436.4,72.8 490.9,68.8 545.5,32.2 600.0,15.0" fill="none" stroke="#111318" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-          <circle cx="0.0" cy="135.4" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
-          <circle cx="54.5" cy="129.8" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
-          <circle cx="109.1" cy="125.4" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
-          <circle cx="163.6" cy="117.2" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
-          <circle cx="218.2" cy="91.7" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
-          <circle cx="272.7" cy="85.1" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
-          <circle cx="327.3" cy="79.5" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
-          <circle cx="381.8" cy="74.0" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
-          <circle cx="436.4" cy="72.8" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
-          <circle cx="490.9" cy="68.8" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
-          <circle cx="545.5" cy="32.2" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <path d="M0.0,136.1 L50.0,131.4 L100.0,127.8 L150.0,120.9 L200.0,99.5 L250.0,94.0 L300.0,89.3 L350.0,84.7 L400.0,83.7 L450.0,80.4 L500.0,49.6 L550.0,35.2 L600.0,15.0 L600,140 L0,140 Z" fill="url(#g1)"/>
+          <polyline points="0.0,136.1 50.0,131.4 100.0,127.8 150.0,120.9 200.0,99.5 250.0,94.0 300.0,89.3 350.0,84.7 400.0,83.7 450.0,80.4 500.0,49.6 550.0,35.2 600.0,15.0" fill="none" stroke="#111318" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="0.0" cy="136.1" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="50.0" cy="131.4" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="100.0" cy="127.8" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="150.0" cy="120.9" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="200.0" cy="99.5" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="250.0" cy="94.0" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="300.0" cy="89.3" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="350.0" cy="84.7" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="400.0" cy="83.7" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="450.0" cy="80.4" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="500.0" cy="49.6" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
+          <circle cx="550.0" cy="35.2" r="4" fill="#fff" stroke="#111318" stroke-width="3"/>
           <circle cx="600.0" cy="15.0" r="4.5" fill="#111318" stroke="#111318" stroke-width="3"/>
-          <g font-size="13" font-weight="700" fill="#4d5666" font-family="inherit" text-anchor="middle">
-            <text x="2.0" y="127.4" text-anchor="start">463</text>
-            <text x="54.5" y="121.8">1,023</text>
-            <text x="109.1" y="117.4">1,458</text>
-            <text x="163.6" y="109.2">2,277</text>
-            <text x="218.2" y="83.7">4,821</text>
-            <text x="272.7" y="77.1">5,481</text>
-            <text x="327.3" y="71.5">6,038</text>
-            <text x="381.8" y="66.0">6,588</text>
-            <text x="436.4" y="64.8">6,709</text>
-            <text x="490.9" y="60.8">7,107</text>
-            <text x="545.5" y="24.2">10,769</text>
-            <text x="598" y="7.0" fill="#111318" text-anchor="end">12,485</text>
+          <g font-size="12.5" font-weight="700" fill="#4d5666" font-family="inherit" text-anchor="middle">
+            <text x="2.0" y="128.1" text-anchor="start">463</text>
+            <text x="50.0" y="123.4">1,023</text>
+            <text x="100.0" y="119.8">1,458</text>
+            <text x="150.0" y="112.9">2,277</text>
+            <text x="200.0" y="91.5">4,821</text>
+            <text x="250.0" y="86.0">5,481</text>
+            <text x="300.0" y="81.3">6,038</text>
+            <text x="350.0" y="76.7">6,588</text>
+            <text x="400.0" y="75.7">6,709</text>
+            <text x="450.0" y="72.4">7,107</text>
+            <text x="500.0" y="41.6">10,769</text>
+            <text x="550.0" y="27.2">12,485</text>
+            <text x="598" y="7.0" fill="#111318" text-anchor="end">14,898</text>
           </g>
         </svg>
-        <div class="legend"><span>22밤</span><span>23아침</span><span>23밤</span><span>24오후</span><span>25·06</span><span>25·11</span><span>25·22</span><span>26·09</span><span>26·22</span><span>27·09</span><span>27·22</span><span>28·09</span></div>
+        <div class="legend"><span>22밤</span><span>23아침</span><span>23밤</span><span>24오후</span><span>25·06</span><span>25·11</span><span>25·22</span><span>26·09</span><span>26·22</span><span>27·09</span><span>27·22</span><span>28·09</span><span>28·22</span></div>
       </div>
-      <p class="fine">조회수는 “최근 30일 누적”이라 하루치가 아니라 계속 쌓이는 값입니다. 22:35부터 10시간 반에 <b>1,716회</b>가 더 늘었습니다. (가로축은 기록한 순서이고 간격은 실제 시간과 다릅니다.)</p>
+      <p class="fine">조회수는 “최근 30일 누적”이라 하루치가 아니라 계속 쌓이는 값입니다. 09:05부터 13시간 반에 <b>2,413회</b>가 더 늘었습니다. (가로축은 기록한 순서이고 간격은 실제 시간과 다릅니다.)</p>
     </div>
 
     <div class="card" style="--accent:var(--th)">
       <h2><span class="dot"></span>최근 게시물과 반응</h2>
       <ul class="clean">
         <li>
+          <a class="row" href="https://www.threads.com/@chalddop/post/DgSVxo4kiM3" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">오늘 22:00 타래 1/2 — 공포지수 10, 고래들은 12만 개 순매집</div>
+              <div class="mt">11/28 22:17 발행 · 2편 · 18분에 <b>12회</b> (조회한 사람 0) · 답글 1</div>
+            </div>
+            <div class="views">12<small>조회</small></div>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="https://www.threads.com/@chalddop/post/DgR_oXikqgz" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">오늘 19:00 타래 1/2 — 미국 10월 PCE 3.8%, 비트코인 $59,723</div>
+              <div class="mt">11/28 19:00 발행 · 2편 · 3시간에 <b>22회</b> (조회한 사람 21) · 답글 1</div>
+            </div>
+            <div class="views">22<small>조회</small></div>
+          </a>
+        </li>
+        <li>
           <a class="row" href="https://www.threads.com/@chalddop/post/DgQ0aCuErDT" target="_blank" rel="noopener">
             <div class="body">
               <div class="tl">오늘 08:00 타래 1/2 — 나스닥 +2.3%·하이닉스 ADR +7%, 비트코인은 $60K 아래로</div>
-              <div class="mt">11/28 08:05 · 2편 타래 · 1시간에 <b>20회</b> (조회한 사람 17)</div>
+              <div class="mt">11/28 08:00 발행 · 2편 · 14시간에 <b>29회</b> (조회한 사람 27) · 답글 1</div>
             </div>
-            <div class="views">20<small>조회</small></div>
+            <div class="views">29<small>조회</small></div>
           </a>
         </li>
         <li>
           <a class="row" href="https://www.threads.com/@chalddop/post/DgPvha3EoRl" target="_blank" rel="noopener">
             <div class="body">
-              <div class="tl">11/27 22:00 미니 타래 1/2 — 추수감사절 쉬고 온 미장 프리마켓, 나스닥 선물 +2.8%</div>
-              <div class="mt">11/27 22:05 · 2편 타래 · 20 → <b>47회</b></div>
+              <div class="tl">11/27 22:00 미니 타래 1/2 — 추수감사절 쉬고 온 미장 프리마켓</div>
+              <div class="mt">11/27 22:05 · 2편 · 20 → <b>47회</b> (하루 만에 2.4배)</div>
             </div>
             <div class="views">47<small>조회</small></div>
           </a>
@@ -620,7 +667,7 @@
           <a class="row" href="https://www.threads.com/@chalddop/post/DgPa5QUkqyA" target="_blank" rel="noopener">
             <div class="body">
               <div class="tl">11/27 19:00 타래 1/5 — 코스피 +4.34% 폭등, 외국인 하이닉스·삼성전자 순매수</div>
-              <div class="mt">11/27 19:00 · 5편 타래 · 53 → <b>90회</b> (하루 만에 1.7배)</div>
+              <div class="mt">11/27 19:00 · 5편 · 53 → 90회에서 변화 없음 (하루 만에 1.7배로 마감)</div>
             </div>
             <div class="views">90<small>조회</small></div>
           </a>
@@ -629,57 +676,30 @@
           <a class="row" href="https://www.threads.com/@chalddop/post/DgOPU5-Eo7v" target="_blank" rel="noopener">
             <div class="body">
               <div class="tl">11/27 08:00 타래 1/2 — 뉴욕장 추수감사절 휴장, 코스피200 야간선물 +0.17%</div>
-              <div class="mt">11/27 08:00 · 2편 타래 · 하루에 <b>85회</b> · 조회 출처 검색 79%</div>
+              <div class="mt">11/27 08:00 · 2편 · 하루에 <b>85회</b>로 마감 (조회 출처 검색 79%)</div>
             </div>
             <div class="views">85<small>조회</small></div>
-          </a>
-        </li>
-        <li>
-          <a class="row" href="https://www.threads.com/@chalddop/post/DgNKmycktIA" target="_blank" rel="noopener">
-            <div class="body">
-              <div class="tl">11/26 22:00 미니 타래 1/2 — 미국장 추수감사절 휴장, 외국인 하이닉스 재매수</div>
-              <div class="mt">11/26 22:06 · 2편 타래 · 66 → <b>73회</b></div>
-            </div>
-            <div class="views">73<small>조회</small></div>
           </a>
         </li>
         <li>
           <a class="row" href="https://www.threads.com/@chalddop/post/DgM2F1wEiRy" target="_blank" rel="noopener">
             <div class="body">
               <div class="tl">11/26 19:00 타래 1/5 — 코스피 장중 4,817 반등, 한은 금리 인상에 상승분 반납</div>
-              <div class="mt">11/26 19:00 · 99 → <b>109회</b> · 이틀째 최고</div>
+              <div class="mt">11/26 19:00 · 5편 · 99 → <b>109회</b> · 이틀째 최고 기록</div>
             </div>
             <div class="views">109<small>조회</small></div>
           </a>
         </li>
-        <li>
-          <a class="row" href="https://www.threads.com/@chalddop/post/DgLqu-9kob9" target="_blank" rel="noopener">
-            <div class="body">
-              <div class="tl">11/26 08:00 타래 1/5 — 나스닥 장중 -4.6%→-0.62% 반등</div>
-              <div class="mt">11/26 08:00 · 스타일 A 메모지 카드 · 2 → <b>3회</b>로 사실상 멈춤(노출 실패 사례)</div>
-            </div>
-            <div class="views">3<small>조회</small></div>
-          </a>
-        </li>
-        <li>
-          <a class="row" href="https://www.threads.com/@chalddop/post/DgKmKxMkkgL" target="_blank" rel="noopener">
-            <div class="body">
-              <div class="tl">11/25 22:00 미니 타래 1/2 — 골드만삭스 CTA 680억 달러 매도 경고</div>
-              <div class="mt">스타일 3 AI 일러스트 카드 · 37회에서 변화 없음(나흘째)</div>
-            </div>
-            <div class="views">37<small>조회</small></div>
-          </a>
-        </li>
       </ul>
       <div class="note">
-        <span class="ic">📈</span>
-        <span>어제 게시물이 하루 만에 더 붙었습니다 — 19:00 <b>90회</b>, 22:00 <b>47회</b>. 오늘 08:00은 1시간에 20회로 어제 같은 때(37회)보다 느립니다. 저녁·밤 값까지 보고 아침 구성을 판단합니다.</span>
+        <span class="ic">📉</span>
+        <span>오늘 19:00 타래가 3시간에 <b>22회</b>입니다. 어제 같은 슬롯은 3시간에 53회 → 하루 90회까지 갔습니다. 아침 타래도 14시간 29회로 어제(하루 85회)의 3분의 1 수준이라, 오늘은 세 회차 모두 노출이 약합니다.</span>
       </div>
-      <p class="fine">가장 최근 값 기준입니다 — 오늘 08:00 20회, 어제 19:00 90회 · 22:00 47회 · 08:00 85회, 11/26 19:00 109회 · 22:00 73회. 11/26 08:00 글은 3회로 거의 늘지 않았습니다(노출 실패 사례).</p>
+      <p class="fine">가장 최근 값 기준입니다 — 오늘 08:00 29회 · 19:00 22회 · 22:00 12회(18분), 어제 08:00 85 · 19:00 90 · 22:00 47회, 11/26 19:00 109회.</p>
     </div>
 
     <div class="card" style="--accent:var(--th)">
-      <h2><span class="dot"></span>자동화 설정과 이미지 A/B/C 테스트</h2>
+      <h2><span class="dot"></span>자동화 설정과 이미지 A/B/C 기록</h2>
       <h3>게시 일정 — 하루 3회</h3>
       <dl class="kv">
         <dt>08:00</dt><dd>2편 타래 + 요약 카드 이미지 (11/27부터 이 구성 — 그전에는 5편)</dd>
@@ -687,18 +707,18 @@
         <dt>22:00</dt><dd>2편 미니 타래 + AI 일러스트 카드 (마감 브리핑 · 11/25부터 이 형식)</dd>
       </dl>
 
-      <h3>이미지 스타일 순환 (11/25 시작 · 1회전 완료)</h3>
+      <h3>이미지 스타일 순환 (11/25 시작 · 2회전 진행 중)</h3>
       <ul class="clean">
-        <li><div class="row"><span class="rank top">A</span><div class="body"><div class="tl">화이트/크림 메모지·신문 스크랩형</div><div class="mt"><b>11/25 08:00</b> 23회 / 14시간 · <b>11/26 08:00</b> <b style="color:#c2410c">2회 / 하루 — 노출 실패</b> · <b>11/27 08:00</b> <b style="color:#08744a">37회 → 85회 / 하루 — 최고</b> · <b>11/28 08:00</b> 20회 / 1시간</div></div></div></li>
-        <li><div class="row"><span class="rank">B</span><div class="body"><div class="tl">굵은 타이포 + 핵심 숫자 1개 매거진 표지형</div><div class="mt"><b>11/25 19:00</b> 4회 / 3시간 → 하루 뒤 8회 — 노출 실패 · <b>11/26 19:00</b> 67 → <b>109회</b> · <b>11/27 19:00</b> 53 → <b>90회</b></div></div></div></li>
-        <li><div class="row"><span class="rank top">C</span><div class="body"><div class="tl">주제별 AI 일러스트 생성형</div><div class="mt"><b>11/25 22:00</b> 16회 / 27분 → 하루 뒤 37회 · <b>11/26 22:00</b> 28 → <b>73회</b> · <b>11/27 22:00</b> 20 → <b>47회</b></div></div></div></li>
+        <li><div class="row"><span class="rank top">A</span><div class="body"><div class="tl">화이트/크림 메모지·신문 스크랩형</div><div class="mt"><b>11/25</b> 23회/14시간 · <b>11/26</b> 2회 (노출 실패) · <b>11/27</b> 37 → 85회 (최고) · <b>11/28</b> 20 → <b>29회</b>/14시간</div></div></div></li>
+        <li><div class="row"><span class="rank">B</span><div class="body"><div class="tl">굵은 타이포 + 핵심 숫자 1개 매거진 표지형</div><div class="mt"><b>11/25</b> 4회 → 8회 · <b>11/26</b> 67 → 109회 · <b>11/27</b> 53 → 90회 · <b>11/28</b> <b style="color:#c2410c">22회/3시간 (부진)</b></div></div></div></li>
+        <li><div class="row"><span class="rank top">C</span><div class="body"><div class="tl">주제별 AI 일러스트 생성형</div><div class="mt"><b>11/25</b> 16 → 37회 · <b>11/26</b> 28 → 73회 · <b>11/27</b> 20 → 47회 · <b>11/28</b> 12회/18분 (막 발행)</div></div></div></li>
       </ul>
-      <p class="fine">19:00은 B 스타일로 이틀 연속 하루 만에 90회를 넘겼습니다(109·90). A는 2편 구성으로 바꾼 11/27에 하루 85회까지 붙었지만 오늘 아침은 1시간 20회로 출발이 느립니다. 어제 밤 C는 47회로, 11/26(73회)보다는 낮습니다.</p>
+      <p class="fine">B(19:00)가 이틀 연속 하루 90~109회를 냈는데 오늘은 3시간 22회로 출발이 느립니다. C(22:00)는 이틀 연속 하루에 47~73회까지 붙었고, A(08:00)는 2편 구성에서 29회로 어제(85회)의 3분의 1입니다.</p>
 
       <h3>댓글 소통 루틴</h3>
       <div class="note">
         <span class="ic">✅</span>
-        <span><b>11/27(금) 재개</b> — 09:00 회차에 이어 21:00에 3건까지 진행했습니다. 이틀 휴식 뒤라 간격을 크게 두었고, 다음은 11/28 09:00 회차입니다.</span>
+        <span>오늘 <b>09:30 · 13:30 · 21:00</b> 세 회차 모두 진행했습니다(회차당 인기 글 3곳). 내일도 같은 시간대에 이어집니다.</span>
       </div>
     </div>
   </section>
@@ -716,28 +736,37 @@
       </div>
 
       <div class="stats">
-        <div class="stat"><div class="k">공개 글</div><div class="v">20<small>편</small></div><div class="d"><span class="chip up">▲ +1</span> 오늘 08:21 발행</div></div>
-        <div class="stat"><div class="k">임시저장</div><div class="v">3<small>편</small></div><div class="d">내일·모레용</div></div>
-        <div class="stat"><div class="k">어제 조회 / 방문</div><div class="v">2<small>회</small></div><div class="d">방문자 2명 · 오늘 09:05 기준 조회 <b>2</b> / 방문자 <b>2</b></div></div>
+        <div class="stat"><div class="k">공개 글</div><div class="v">21<small>편</small></div><div class="d"><span class="chip up">▲ +1</span> 20:35 21번 글</div></div>
+        <div class="stat"><div class="k">임시저장</div><div class="v">3<small>편</small></div><div class="d">변동 없음 (내일·모레용)</div></div>
+        <div class="stat"><div class="k">어제 조회 / 방문</div><div class="v">2<small>회</small></div><div class="d">방문자 2명 · 오늘도 조회 <b>2</b> / 방문자 <b>2</b></div></div>
         <div class="stat"><div class="k">누적</div><div class="v">39<small>회</small></div><div class="d">누적 방문자 24명 · 구독자 0</div></div>
       </div>
 
       <h3>카테고리</h3>
       <p style="margin:0;display:flex;flex-wrap:wrap;gap:6px;">
         <span class="chip ts">주식·증시 6</span>
-        <span class="chip ts">AI·개발 6</span>
+        <span class="chip ts">AI·개발 7</span>
         <span class="chip">앱개발기 3</span>
         <span class="chip">유튜브 분석기 2</span>
         <span class="chip">뷰포인트 1</span>
         <span class="chip">개발 삽질 노트 1</span>
         <span class="chip">약관·방침 4</span>
       </p>
-      <p class="fine">글 관리의 <b>공개 글 20편</b>이고, 카테고리별 숫자는 임시저장 3편까지 포함한 값이라 합계가 23입니다. 오늘 새 글 <b>20번</b>이 주식·증시로 들어가 주식·증시가 5 → 6편이 됐습니다.</p>
+      <p class="fine">분류 전체보기 <b>공개 글 21편</b>, 카테고리별 숫자는 임시저장 3편까지 포함한 값이라 합계가 24입니다. 오늘 21번 글이 AI·개발로 들어가 AI·개발이 6 → 7편이 됐습니다.</p>
     </div>
 
     <div class="card" style="--accent:var(--ts)">
-      <h2><span class="dot"></span>최근 공개 글 8편 (11/24 ~ 11/28)</h2>
+      <h2><span class="dot"></span>최근 공개 글 9편 (11/24 ~ 11/28)</h2>
       <ul class="clean">
+        <li>
+          <a class="row" href="https://dalgulab.tistory.com/21" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">Gemini 전화·Mac 제어 &amp; 클로드 앱 설치! 오늘(11/28) AI 뉴스·파이썬 가드·GitHub 트렌딩 2선</div>
+              <div class="mt"><span class="chip ts">AI·개발</span> <b>11/28 20:35 발행</b> · 태그 8개 · 오늘 저녁 자동 회차</div>
+            </div>
+            <div class="views">21<small>글 번호</small></div>
+          </a>
+        </li>
         <li>
           <a class="row" href="https://dalgulab.tistory.com/20" target="_blank" rel="noopener">
             <div class="body">
@@ -751,7 +780,7 @@
           <a class="row" href="https://dalgulab.tistory.com/19" target="_blank" rel="noopener">
             <div class="body">
               <div class="tl">GPT-6.2 사용량 한도·Gemini 4 요금 인상! 오늘(11/27) AI 뉴스·GitHub 트렌딩 2선</div>
-              <div class="mt"><span class="chip ts">AI·개발</span> <b>11/27 20:34 발행</b> · 어제 저녁 자동 회차</div>
+              <div class="mt"><span class="chip ts">AI·개발</span> <b>11/27 20:34 발행</b> · 11/27 저녁 자동 회차</div>
             </div>
             <div class="views">19<small>글 번호</small></div>
           </a>
@@ -820,27 +849,97 @@
         <li><div class="row"><span class="rank">2</span><div class="body"><div class="tl">바이브코딩할 때 AI가 엉뚱한 코드 안 짜게 만드는 CLAUDE.md 작성 가이드</div><div class="mt"><span class="chip ts">AI·개발</span> 태그 8개 · 원고 <code>downloads/tistory-2026-11-24-draft2.md</code></div></div></div></li>
         <li><div class="row"><span class="rank">3</span><div class="body"><div class="tl">GitHub 오픈소스 프로젝트 처음 볼 때 5분 만에 구조 파악하는 순서</div><div class="mt"><span class="chip ts">AI·개발</span> 태그 8개 · 원고 <code>downloads/tistory-2026-11-24-draft3.md</code></div></div></div></li>
       </ul>
-      <p class="fine">임시저장은 공개 목록·글 관리 화면에 나오지 않습니다. 새 글 편집 화면 하단 <b>“임시저장 개수 3개”</b>에서 확인됩니다.</p>
+      <p class="fine">임시저장은 공개 목록·글 관리 화면에 나오지 않습니다. 새 글 편집 화면 하단 <b>“임시저장 개수 3개”</b>에서 확인했습니다.</p>
     </div>
 
     <div class="card" style="--accent:var(--ts)">
-      <h2><span class="dot"></span>발행 일정</h2>
+      <h2><span class="dot"></span>발행 일정과 유입</h2>
       <dl class="kv">
         <dt>매일 08:15</dt><dd><span class="chip ts">주식·증시</span> 간밤 미장 마감 + 국장 마감 복기 + 오늘 장전 체크포인트</dd>
         <dt>매일 20:30</dt><dd><span class="chip ts">AI·개발</span> AI 최신 뉴스 + 실전 코딩 팁 + GitHub 트렌딩</dd>
         <dt>형식</dt><dd>1,500~2,500자 · 태그 5~8개 · 요약 카드 1장 · 카테고리 고정</dd>
       </dl>
-      <p class="fine">오늘은 08:21 <b>20번 글</b>(주식·증시)이 나갔습니다. 다음은 <b>오늘 20:30 AI·개발 회차(21번 글)</b>입니다. 하루 최대 15건까지 가능하지만 초기 검색 노출을 위해 하루 2회를 유지하고 있습니다.</p>
-      <p class="fine">방문 경로: 검색 <b>0</b> · SNS <b>0</b> · 기타 2(직접 2), 유입 키워드 없음. 오늘 09:05 기준 조회 2·방문자 2(누적 39·24)로 아침과 같고, 어제(11/27)는 2·2였습니다. 글 20편을 쌓은 지금도 검색 유입이 나흘째 0이라, 새 글 발행만으로는 방문이 늘지 않고 있습니다.</p>
+      <p class="fine">오늘은 08:21 <b>20번 글</b>(주식·증시)과 20:35 <b>21번 글</b>(AI·개발)이 나갔습니다. 다음은 내일 08:15 <b>22번 글</b>(주식·증시)입니다.</p>
+      <p class="fine">방문 경로: 검색 <b>0</b> · SNS <b>0</b> · 기타 2(직접 2), 유입 키워드 없음. 오늘 22:34 기준 조회 2·방문자 2(누적 39·24)로 아침과 같은데, 오늘 두 편을 발행하고도 오후·저녁 방문이 늘지 않았습니다. 글 21편을 쌓은 지금도 검색 유입이 나흘째 0입니다.</p>
     </div>
   </section>
 
+  <!-- ================= INSTAGRAM ================= -->
+  <section class="panel" id="panel-instagram" role="tabpanel" aria-labelledby="tab-instagram">
+    <div class="card" style="--accent:var(--ig)">
+      <div class="chan">
+        <div class="avatar">📸</div>
+        <div class="who">
+          <div class="t">Tiny Wow</div>
+          <div class="h">@tinywow81 · 동물·자연 쇼츠 재사용 릴스 · 11/28부터 대시보드에 포함</div>
+        </div>
+        <a class="btn solid" href="https://www.instagram.com/tinywow81/" target="_blank" rel="noopener">프로필 열기 ↗</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="k">게시물(릴스)</div><div class="v">2<small>편</small></div><div class="d">오늘 사자 릴스 +1</div></div>
+        <div class="stat"><div class="k">팔로워</div><div class="v">0<small>명</small></div><div class="d">팔로우 0 · 첫 이틀</div></div>
+        <div class="stat"><div class="k">최근 릴스 조회</div><div class="v">184<small>회</small></div><div class="d">판다 · 9시간 경과</div></div>
+        <div class="stat"><div class="k">좋아요</div><div class="v">1<small>개</small></div><div class="d">릴스당 1 · 댓글 0</div></div>
+      </div>
+
+      <div class="note">
+        <span class="ic">🔗</span>
+        <span>프로필 소개글 <b>“Small Moments, Big Wonder ✨ / Animals, Nature, History &amp; Mysteries 🌍🔍 / Watch full stories on YouTube 👇”</b> + 링크 <b>youtube.com/@TinyWow-m6x</b> 로 유튜브와 연결해 두었습니다.</span>
+      </div>
+      <p class="fine">릴스 조회수는 프로필 → <b>릴스 탭</b> 썸네일에 표시되는 값입니다. 개별 릴스 화면에는 조회수가 나오지 않고 좋아요·댓글만 보입니다.</p>
+    </div>
+
+    <div class="card" style="--accent:var(--ig)">
+      <h2><span class="dot"></span>최근 릴스 2편</h2>
+      <ul class="clean">
+        <li>
+          <a class="row" href="https://www.instagram.com/reel/DgSXwHkPl5g/" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">Where do wild lions live outside Africa? Only in Gir, India 🦁</div>
+              <div class="mt">11/28 <b>22:35경</b> 게시 · <b>아시아사자 891마리</b> 회복 서사 · 좋아요 1 · 댓글 0</div>
+            </div>
+            <div class="views">0<small>조회</small></div>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="https://www.instagram.com/reel/DgRZmv0v6cs/" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="tl">Why are giant pandas trapped in one of the world's worst diets? 🐼🎋</div>
+              <div class="mt">오늘 <b>13:30경</b> 게시(9시간 전) · 판다가 하루 12시간 대나무를 먹는 이유 · 좋아요 1 · 댓글 0</div>
+            </div>
+            <div class="views">184<small>조회</small></div>
+          </a>
+        </li>
+      </ul>
+      <p class="fine">두 릴스 모두 캡션 끝에 유튜브 링크(@TinyWow-m6x)와 해시태그 5개(#panda #wildlife #tinywow 등)를 달았습니다. 판다 릴스는 9시간에 184회 — 팔로워 0인 계정이 추천으로 받은 첫 도달입니다.</p>
+    </div>
+
+    <div class="card" style="--accent:var(--ig)">
+      <h2><span class="dot"></span>운영 메모 · 다음 할 일</h2>
+      <h3>지금 상태</h3>
+      <dl class="kv">
+        <dt>계정</dt><dd>@tinywow81 · 표시 이름 Tiny Wow</dd>
+        <dt>콘텐츠</dt><dd>유튜브 쇼츠 세로 영상을 그대로 올리는 재사용 릴스 (2편)</dd>
+        <dt>도달</dt><dd>팔로워 0 → 추천 피드에만 의존 · 판다 184회 / 사자 0회(게시 직후)</dd>
+        <dt>연결</dt><dd>프로필 링크 → 유튜브 @TinyWow-m6x</dd>
+      </dl>
+      <h3>다음 할 일</h3>
+      <ul class="clean">
+        <li><div class="row"><span class="rank top">1</span><div class="body"><div class="tl">하루 1편씩, 이미 만든 쇼츠로 채우기</div><div class="mt">사자(1.5천) · 고양이(1.1천) · 북극곰(761) 순으로 올리면 추가 제작 없이 편수를 늘릴 수 있습니다</div></div></div></li>
+        <li><div class="row"><span class="rank top">2</span><div class="body"><div class="tl">첫 3초·자막을 유튜브와 다르게</div><div class="mt">릴스는 소리 없이 보는 비중이 커서, 화면 자막이 첫 3초에 핵심 숫자를 보여줘야 합니다</div></div></div></li>
+        <li><div class="row"><span class="rank top">3</span><div class="body"><div class="tl">조회수는 릴스 탭에서 확인</div><div class="mt">개별 릴스 화면에는 조회가 안 보입니다 · 대시보드 갱신 때 릴스 탭 값을 기록합니다</div></div></div></li>
+      </ul>
+      <p class="fine">인스타는 이번 회차(11/28 22:35)부터 대시보드의 4번째 채널로 들어왔습니다. 다음 갱신(11/29 09:00)에서 사자 릴스의 첫 조회수와 팔로워 변화를 함께 기록합니다.</p>
+    </div>
+  </section>
   <footer class="foot">
-    <div>수집 2026-11-28 09:05 KST · 각 플랫폼 화면 표시값 기준 · 직전 측정 11/27 22:35</div>
+    <div>수집 2026-11-28 22:35 KST · 각 플랫폼 화면 표시값 기준 · 직전 측정 11/28 09:05</div>
     <div>
       <a href="https://www.youtube.com/@TinyWow-m6x" target="_blank" rel="noopener">youtube.com/@TinyWow-m6x</a> ·
       <a href="https://www.threads.com/@chalddop" target="_blank" rel="noopener">threads.com/@chalddop</a> ·
-      <a href="https://dalgulab.tistory.com" target="_blank" rel="noopener">dalgulab.tistory.com</a>
+      <a href="https://dalgulab.tistory.com" target="_blank" rel="noopener">dalgulab.tistory.com</a> ·
+      <a href="https://www.instagram.com/tinywow81/" target="_blank" rel="noopener">instagram.com/tinywow81</a>
     </div>
     <a class="totop" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ 맨 위로</a>
   </footer>
